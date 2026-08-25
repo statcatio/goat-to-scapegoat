@@ -39,5 +39,5 @@ trees with author, score, body, and `created_utc` timestamps (the timeline axis)
 
 ## Next steps (after data lands)
 - `analyze.py` — sentiment + toxicity per comment, **per team**, with the
-  r/soccerjerk-style sarcasm caveat handled by keeping sources separate.
+  r/soccercirclejerk-style sarcasm caveat handled by keeping sources separate.
 - D3 timeline comparing the two finals side by side.

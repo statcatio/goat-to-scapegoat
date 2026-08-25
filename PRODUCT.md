@@ -49,7 +49,7 @@ core story must land even for a passive scroller who never interacts.
   Anonymous scraping is hard-blocked (403); authenticated API access is required.
 - **Analysis:** comment-level sentiment + toxicity, bucketed *per team*
   (sentiment toward Argentina vs. the opponent) via name/player keyword matching.
-- **Known caveat:** satire/sarcasm sources (e.g. r/soccerjerk) break off-the-shelf
+- **Known caveat:** satire/sarcasm sources (e.g. r/soccercirclejerk) break off-the-shelf
   sentiment models; sources are kept separate rather than pooled into one average.
 - **Visualization:** a timeline is the intended centerpiece (D3, for flexibility),
   tracking comment volume and sentiment across the match.
