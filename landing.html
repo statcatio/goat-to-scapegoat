@@ -1,0 +1,291 @@
+<title>From GOAT to Scapegoat</title>
+<!--
+  DIRECTION CONTRACT — The Statistical Almanac
+  THESIS: A sentiment almanac, not a hot take. It refuses the cream-serif
+    editorial-blog default and the broadcast-scoreboard hero; credibility comes
+    from Swiss objectivity and a diverging data table, not decoration.
+  OWN-WORLD: Warm paper (#EFF3E3), warm ink, ONE sky-blue accent for data; a
+    brick red only as the "negative sentiment" data role. System neo-grotesque,
+    tabular figures, hairline rules, no cards/shadows. Left-aligned masthead.
+  STORY: Reddit once crowned Argentina; four years later it turned. The reader
+    sees the flip stated as a single diverging measurement, then is invited down
+    into the method. Question owned: did they change, or did we?
+  FIRST VIEWPORT: Meta rule (record title + source) / wordmark FROM GOAT TO
+    SCAPEGOAT at display scale, left / one-line dek / the signature diverging
+    results table (2022 positive, 2026 negative) with tabular figures / a quiet
+    method cue. Sample data is labeled illustrative.
+  FORM: Statistical Almanac, chosen in-thread (lightweight path, no concept-seed
+    roll — brief was tightly pinned). Single committed light world.
+-->
+<style>
+  :root {
+    --paper: #EFF3E3;
+    --paper-2: #E5EAD5;
+    --ink: #1C1A14;
+    --ink-2: #5B5647;
+    --rule: rgba(28, 26, 20, 0.22);
+    --rule-strong: rgba(28, 26, 20, 0.5);
+    --accent: #3C6E9F;
+    --accent-ink: #2E5A85;
+    --neg: #9E4A34;
+
+    --display: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --body: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--paper); }
+
+  .almanac {
+    min-height: 100vh;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(1.5rem, 4vw, 3.25rem);
+  }
+
+  .sheet {
+    width: 100%;
+    max-width: 62rem;
+    margin: 0 auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ---- masthead meta rule ---- */
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    padding-bottom: 0.65rem;
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  .meta .rec { color: var(--ink); font-weight: 600; }
+  .meta .src { text-align: right; }
+
+  /* ---- wordmark ---- */
+  .wordmark {
+    margin: clamp(2.2rem, 6vw, 4.5rem) 0 0;
+    font-family: var(--display);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
+    font-size: clamp(2.6rem, 9.5vw, 6rem);
+    text-wrap: balance;
+  }
+  .wordmark .l2 { color: var(--ink); }
+
+  .dek {
+    margin: clamp(1.1rem, 2.5vw, 1.6rem) 0 0;
+    font-size: clamp(1.02rem, 1.6vw, 1.2rem);
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 46ch;
+  }
+  .dek b { color: var(--ink); font-weight: 600; }
+
+  /* ---- signature: diverging results table ---- */
+  .table {
+    margin: clamp(2.6rem, 6vw, 4rem) 0 0;
+  }
+  .table-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .table-head .kicker { color: var(--ink); font-weight: 600; }
+  .scale-note { font-variant-numeric: tabular-nums; }
+
+  .row {
+    display: grid;
+    grid-template-columns: 8.5rem 1fr 4.2rem;
+    align-items: center;
+    gap: clamp(0.75rem, 2vw, 1.4rem);
+    padding: clamp(0.9rem, 2vw, 1.15rem) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .row .yr {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 1.35rem;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+  .row .mt {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    margin-top: 0.15rem;
+  }
+
+  .track {
+    position: relative;
+    height: 1.5rem;
+    background:
+      linear-gradient(var(--paper-2), var(--paper-2)) no-repeat;
+  }
+  .track .axis {
+    position: absolute;
+    left: 50%;
+    top: -0.35rem;
+    bottom: -0.35rem;
+    width: 1px;
+    background: var(--rule-strong);
+  }
+  .bar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    /* --w is the final half-width fraction (0..1 of the half-track) */
+    transform: scaleX(var(--w));
+    animation: grow 1.05s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .bar.pos { left: 50%; width: 50%; transform-origin: left center; background: var(--accent); }
+  .bar.neg { right: 50%; width: 50%; transform-origin: right center; background: var(--neg); }
+
+  .row .fig {
+    text-align: right;
+    font-size: 1.15rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+  }
+  .fig.pos { color: var(--accent-ink); }
+  .fig.neg { color: var(--neg); }
+
+  .sample-note {
+    margin-top: 0.85rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-2);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .sample-note .tag {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: var(--neg);
+    border: 1px solid var(--neg);
+    padding: 0.1rem 0.4rem;
+    font-size: 0.62rem;
+  }
+
+  /* ---- foot / method cue ---- */
+  .foot {
+    margin-top: auto;
+    padding-top: clamp(2rem, 5vw, 3rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .method {
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .method b { color: var(--ink); font-weight: 600; }
+  .read {
+    font-family: var(--display);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    font-size: 0.82rem;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 0.2rem;
+  }
+  .read:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 3px; }
+
+  @keyframes grow {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(var(--w)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bar { animation: none; }
+  }
+</style>
+
+<main class="almanac">
+  <div class="sheet">
+    <div class="meta">
+      <span class="rec">The Scapegoat Almanac · No. 01</span>
+      <span class="src">Source · r/worldcup match threads · 2022 &amp; 2026</span>
+    </div>
+
+    <h1 class="wordmark">
+      From GOAT<br><span class="l2">to Scapegoat</span>
+    </h1>
+
+    <p class="dek">
+      Measuring how Reddit&rsquo;s verdict on Argentina turned between two World Cup
+      finals &mdash; and asking the honest question underneath the pile-on:
+      <b>did they change, or did we?</b>
+    </p>
+
+    <section class="table" aria-label="Net sentiment toward Argentina, sample figures">
+      <div class="table-head">
+        <span class="kicker">Net sentiment toward Argentina</span>
+        <span class="scale-note">scale &minus;1.0 &nbsp;&larr; 0 &rarr;&nbsp; +1.0</span>
+      </div>
+
+      <div class="row">
+        <div>
+          <span class="yr">2022</span>
+          <span class="mt">Final · vs France</span>
+        </div>
+        <div class="track">
+          <span class="axis" aria-hidden="true"></span>
+          <span class="bar pos" style="--w: 0.70;"></span>
+        </div>
+        <div class="fig pos">+0.42</div>
+      </div>
+
+      <div class="row">
+        <div>
+          <span class="yr">2026</span>
+          <span class="mt">Final · vs Spain</span>
+        </div>
+        <div class="track">
+          <span class="axis" aria-hidden="true"></span>
+          <span class="bar neg" style="--w: 0.52;"></span>
+        </div>
+        <div class="fig neg">&minus;0.31</div>
+      </div>
+
+      <p class="sample-note">
+        <span class="tag">Sample</span>
+        Illustrative figures &mdash; no comments scraped yet. Real values replace these once the threads are pulled.
+      </p>
+    </section>
+
+    <div class="foot">
+      <span class="method">Method &nbsp;·&nbsp; <b>Scrape</b> &rarr; <b>Analyze</b> &rarr; <b>Visualize</b></span>
+      <a class="read" href="#method">Read the method &darr;</a>
+    </div>
+  </div>
+</main>

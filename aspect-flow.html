@@ -1,0 +1,197 @@
+<title>What Reddit talked about — Argentina, 2022 → 2026</title>
+<!--
+  Ranked aspect-flow (Sankey-style) inside the committed Almanac world.
+  UPGRADE over the reference: ribbons are colored by SENTIMENT, not category —
+  so a topic that stays but sours flows blue (praise) -> brick (criticism).
+  Band thickness = share of Argentina-comments; vertical order = rank that year.
+  ALL data is SAMPLE until the threads are scraped + aspect-classified.
+-->
+<style>
+  :root {
+    --paper:#EFF3E3; --paper-2:#E5EAD5; --ink:#1C1A14; --ink-2:#5B5647;
+    --rule:rgba(28,26,20,0.22); --rule-strong:rgba(28,26,20,0.5);
+    --accent:#3C6E9F; --accent-ink:#2E5A85; --neg:#9E4A34;
+    --display:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--display);-webkit-font-smoothing:antialiased;line-height:1.5;}
+  .wrap{max-width:66rem;margin:0 auto;padding:clamp(1.5rem,4vw,3rem);}
+  .meta{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-2);padding-bottom:0.65rem;border-bottom:1px solid var(--rule-strong);}
+  .meta .rec{color:var(--ink);font-weight:600;}
+  h1{font-weight:800;text-transform:uppercase;letter-spacing:-0.025em;line-height:1;font-size:clamp(1.8rem,5vw,2.9rem);margin:1.8rem 0 0.8rem;text-wrap:balance;}
+  .dek{font-family:var(--display);font-weight:400;font-size:clamp(1rem,1.6vw,1.15rem);color:var(--ink-2);max-width:52ch;margin:0 0 0.6rem;}
+  .dek b{color:var(--ink);font-weight:600;}
+
+  .colscale{display:flex;align-items:center;gap:0.7rem;margin:1.4rem 0 0;font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-2);flex-wrap:wrap;}
+  .colscale .bar{height:0.7rem;width:12rem;max-width:45vw;background:linear-gradient(90deg,#3C6E9F,#C7C2B0 48%,#C7C2B0 52%,#9E4A34);}
+  .colscale b{color:var(--ink);font-weight:600;}
+
+  .chart-head{display:flex;justify-content:space-between;margin:2rem 0 0.4rem;font-weight:800;font-size:1.1rem;letter-spacing:0.02em;}
+  .chart-head .y26{color:var(--ink);}
+  svg.flow{width:100%;height:auto;display:block;overflow:visible;}
+  .aspect-label{font-weight:700;font-size:0.9rem;fill:var(--ink);}
+  .aspect-pct{font-size:0.78rem;fill:var(--ink-2);font-variant-numeric:tabular-nums;}
+  .aspect-pct.big{fill:var(--ink);font-weight:700;font-size:0.9rem;}
+  .ribbon{cursor:pointer;transition:opacity 0.15s;}
+
+  .detail{margin-top:1.6rem;border-top:1px solid var(--rule-strong);padding-top:1.2rem;}
+  .detail .dt{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;}
+  .detail .dt h2{font-weight:800;text-transform:uppercase;letter-spacing:-0.01em;font-size:1.3rem;margin:0;}
+  .detail .delta{font-size:0.8rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-2);font-variant-numeric:tabular-nums;}
+  .detail .delta b.up{color:var(--neg);}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:1rem;border:1px solid var(--rule);}
+  .cols .c{padding:1rem 1.15rem;}
+  .cols .c:first-child{border-right:1px solid var(--rule);}
+  .cols .c .yr{font-weight:800;font-size:0.95rem;}
+  .cols .c .sent{font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;margin:0.15rem 0 0.7rem;}
+  .sent.pos{color:var(--accent-ink);} .sent.neg{color:var(--neg);}
+  .chip{display:inline-block;font-size:0.85rem;padding:0.28rem 0.55rem;margin:0 0.35rem 0.4rem 0;border:1px solid var(--rule-strong);}
+  .chip.pos{color:var(--accent-ink);border-color:var(--accent);}
+  .chip.neg{color:var(--neg);border-color:var(--neg);}
+
+  .sample-note{margin-top:1.4rem;font-size:0.72rem;letter-spacing:0.03em;color:var(--ink-2);display:flex;align-items:center;gap:0.5rem;}
+  .tag{text-transform:uppercase;letter-spacing:0.1em;font-weight:600;color:var(--neg);border:1px solid var(--neg);padding:0.1rem 0.4rem;font-size:0.62rem;}
+  @media (max-width:620px){ .cols{grid-template-columns:1fr;} .cols .c:first-child{border-right:0;border-bottom:1px solid var(--rule);} }
+</style>
+
+<div class="wrap">
+  <div class="meta">
+    <span class="rec">The Scapegoat Almanac · No. 01</span>
+    <span>What Reddit talked about &middot; Argentina</span>
+  </div>
+
+  <h1>Same topics, opposite verdict</h1>
+  <p class="dek">How Reddit&rsquo;s conversation about Argentina split across five themes &mdash; and how each one&rsquo;s tone <b>flipped</b> between the 2022 and 2026 finals. Band width is share of comments; <b>color is sentiment</b>.</p>
+  <div class="colscale">
+    <span>Praise</span><span class="bar"></span><span>Criticism</span>
+    <span style="margin-left:auto">Hover a band for examples</span>
+  </div>
+
+  <div class="chart-head"><span>2022</span><span class="y26">2026</span></div>
+  <svg class="flow" id="flow" viewBox="0 0 1000 540" preserveAspectRatio="xMidYMid meet" aria-label="Aspect flow of Argentina comments, sample data"></svg>
+
+  <div class="detail" id="detail"></div>
+
+  <p class="sample-note"><span class="tag">Sample</span> Illustrative shares, sentiment, and phrases &mdash; replaced once comments are scraped and aspect-classified.</p>
+</div>
+
+<script>
+(function(){
+  // ---- SAMPLE DATA (illustrative until scrape + zero-shot aspect classification) ----
+  var A = [
+    {key:'Tactics', s22:0.60,p22:26, s26:-0.42,p26:19,
+      ex22:['Scaloni cooked','midfield masterclass','the press was perfect'],
+      ex26:['no plan B','parked the bus','tactically clueless']},
+    {key:'Performance', s22:0.50,p22:24, s26:-0.34,p26:22,
+      ex22:['Messi carried them','Dibu was a wall','clinical'],
+      ex26:['so sloppy','giving it away','rode their luck']},
+    {key:'Team & Squad', s22:0.30,p22:18, s26:-0.18,p26:16,
+      ex22:['what a generation','real depth','proper unit'],
+      ex26:['past it now','two-man team','disjointed']},
+    {key:'Personality & Conduct', s22:0.08,p22:16, s26:-0.58,p26:28,
+      ex22:['chippy but earned it','passion','fire'],
+      ex26:['arrogant','classless','Enzo is a thug','no respect']},
+    {key:'Morale & Mentality', s22:0.55,p22:16, s26:-0.22,p26:15,
+      ex22:['never say die','ice in the veins','bottle'],
+      ex26:['rattled','lost the plot','heads dropped']}
+  ];
+
+  var W=1000, H=540, top=20, bot=520, gap=16;
+  var xL=250, xR=750, bandW=16;
+  var avail = (bot-top) - gap*(A.length-1);
+
+  function stack(order){
+    var y=top, map={};
+    order.forEach(function(a){
+      var h = a.p * (avail/100);
+      map[a.key] = {y0:y, y1:y+h, h:h};
+      y += h + gap;
+    });
+    return map;
+  }
+  var left = A.map(function(a){return {key:a.key,p:a.p22};}).sort(function(a,b){return b.p-a.p;});
+  var right = A.map(function(a){return {key:a.key,p:a.p26};}).sort(function(a,b){return b.p-a.p;});
+  var L = stack(left), R = stack(right);
+
+  function col(s, extra){
+    var b=[60,110,159], r=[158,74,52];
+    var c = s>=0? b:r;
+    var op = (0.30 + 0.55*Math.min(1,Math.abs(s)/0.6)) * (extra||1);
+    return 'rgba('+c[0]+','+c[1]+','+c[2]+','+op.toFixed(2)+')';
+  }
+  function fmt(s){ return (s>=0?'+':'−')+Math.abs(s).toFixed(2); }
+
+  var ns='http://www.w3.org/2000/svg';
+  var svg=document.getElementById('flow');
+  var defs=document.createElementNS(ns,'defs'); svg.appendChild(defs);
+
+  A.forEach(function(a,i){
+    var l=L[a.key], r=R[a.key];
+    // gradient blue(2022 tone) -> brick(2026 tone)
+    var g=document.createElementNS(ns,'linearGradient');
+    g.setAttribute('id','g'+i); g.setAttribute('gradientUnits','userSpaceOnUse');
+    g.setAttribute('x1',xL); g.setAttribute('y1',0); g.setAttribute('x2',xR); g.setAttribute('y2',0);
+    [[0,a.s22],[1,a.s26]].forEach(function(st){
+      var s=document.createElementNS(ns,'stop');
+      s.setAttribute('offset',(st[0]*100)+'%'); s.setAttribute('stop-color',col(st[1]));
+      g.appendChild(s);
+    });
+    defs.appendChild(g);
+
+    var xa=xL+bandW, xb=xR, cm=(xa+xb)/2;
+    var d='M'+xa+' '+l.y0+
+          ' C'+cm+' '+l.y0+' '+cm+' '+r.y0+' '+xb+' '+r.y0+
+          ' L'+xb+' '+r.y1+
+          ' C'+cm+' '+r.y1+' '+cm+' '+l.y1+' '+xa+' '+l.y1+' Z';
+    var path=document.createElementNS(ns,'path');
+    path.setAttribute('d',d); path.setAttribute('fill','url(#g'+i+')');
+    path.setAttribute('class','ribbon'); path.setAttribute('data-i',i);
+    svg.appendChild(path);
+
+    // end bands (solid tone)
+    [[xL,l,a.s22],[xR-bandW,r,a.s26]].forEach(function(bnd){
+      var rect=document.createElementNS(ns,'rect');
+      rect.setAttribute('x',bnd[0]); rect.setAttribute('y',bnd[1].y0);
+      rect.setAttribute('width',bandW); rect.setAttribute('height',bnd[1].h);
+      rect.setAttribute('fill',col(bnd[2],1.25));
+      svg.appendChild(rect);
+    });
+
+    // labels: left = name + %, right = %
+    var lc=(l.y0+l.y1)/2, rc=(r.y0+r.y1)/2;
+    txt(xL-12, lc-4, a.key, 'aspect-label', 'end');
+    txt(xL-12, lc+13, a.p22+'%', 'aspect-pct', 'end');
+    txt(xR+bandW+12, rc+4, a.p26+'%', 'aspect-pct big', 'start');
+  });
+
+  function txt(x,y,s,cls,anchor){
+    var t=document.createElementNS(ns,'text');
+    t.setAttribute('x',x); t.setAttribute('y',y); t.setAttribute('class',cls);
+    t.setAttribute('text-anchor',anchor); t.textContent=s;
+    svg.appendChild(t); return t;
+  }
+
+  // interaction
+  var ribbons=[].slice.call(svg.querySelectorAll('.ribbon'));
+  function select(i){
+    ribbons.forEach(function(p,j){ p.style.opacity = (j===i)?'1':'0.28'; });
+    var a=A[i];
+    var d=document.getElementById('detail');
+    var delta=a.p26-a.p22;
+    d.innerHTML =
+      '<div class="dt"><h2>'+a.key+'</h2>'+
+      '<span class="delta">share '+a.p22+'% &rarr; <b class="'+(delta>0?'up':'')+'">'+a.p26+'%</b>'+
+      ' &nbsp;·&nbsp; sentiment '+fmt(a.s22)+' &rarr; '+fmt(a.s26)+'</span></div>'+
+      '<div class="cols"><div class="c"><div class="yr">2022</div><div class="sent pos">'+toneWord(a.s22)+' · '+fmt(a.s22)+'</div>'+
+        a.ex22.map(function(e){return '<span class="chip pos">&ldquo;'+e+'&rdquo;</span>';}).join('')+'</div>'+
+      '<div class="c"><div class="yr">2026</div><div class="sent neg">'+toneWord(a.s26)+' · '+fmt(a.s26)+'</div>'+
+        a.ex26.map(function(e){return '<span class="chip neg">&ldquo;'+e+'&rdquo;</span>';}).join('')+'</div></div>';
+  }
+  function toneWord(s){ return s>=0.3?'Praising':s>=0?'Mixed':s>=-0.3?'Critical':'Hostile'; }
+  ribbons.forEach(function(p){
+    p.addEventListener('mouseenter',function(){ select(+p.getAttribute('data-i')); });
+    p.addEventListener('click',function(){ select(+p.getAttribute('data-i')); });
+  });
+  select(3); // default: Personality & Conduct — the biggest, ugliest shift
+})();
+</script>
