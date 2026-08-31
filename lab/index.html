@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Lab — From GOAT to Scapegoat</title>
+<meta name="description" content="Five working prototypes behind From GOAT to Scapegoat — what each one tried, and what survived into the finished piece.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='5' fill='%233C6E9F'/><g fill='none' stroke='%23EFF3E3' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'><path d='M9 8l3 5M23 8l-3 5'/><path d='M10 13h12v6a6 6 0 0 1-12 0z'/><path d='M13.5 16h.01M18.5 16h.01'/></g></svg>">
+<style>
+  :root {
+    --paper: #EFF3E3;
+    --paper-2: #E5EAD5;
+    --paper-3: #DCE2CC;
+    --ink: #1C1A14;
+    --ink-2: #5B5647;
+    --rule: rgba(28, 26, 20, 0.22);
+    --rule-strong: rgba(28, 26, 20, 0.5);
+    --accent: #3C6E9F;
+    --accent-ink: #2E5A85;
+    --neg: #9E4A34;
+    --pos: #4E7D3B;
+    --body: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+  a { color: inherit; }
+
+  .wrap { width: 100%; max-width: 64rem; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem); }
+  .reading { max-width: 40rem; }
+
+  /* ---- top bar ---- */
+  .topbar {
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+  }
+  .topbar .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem; padding-top: 0.9rem; padding-bottom: 0.9rem;
+  }
+  .topbar a { color: var(--ink-2); text-decoration: none; }
+  .topbar a:hover { color: var(--accent-ink); }
+  .topbar .back { font-weight: 600; color: var(--ink); }
+
+  /* ---- masthead ---- */
+  .masthead { padding: clamp(3rem, 8vw, 5.5rem) 0 clamp(2rem, 5vw, 3rem); }
+  .kicker {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    margin: 0 0 0.9rem;
+  }
+  h1 {
+    font-size: clamp(2.4rem, 7vw, 4rem);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin: 0 0 1.4rem;
+    font-weight: 700;
+  }
+  .lede { font-size: clamp(1.02rem, 2.2vw, 1.18rem); color: var(--ink-2); margin: 0 0 1.1rem; }
+  .lede strong { color: var(--ink); font-weight: 600; }
+
+  .disclaimer {
+    border: 1px solid var(--rule);
+    background: var(--paper-2);
+    padding: 0.85rem 1rem;
+    font-size: 0.9rem;
+    color: var(--ink-2);
+    max-width: 40rem;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 0.64rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: 1px solid var(--rule-strong);
+    padding: 0.14rem 0.42rem;
+    margin-right: 0.45rem;
+    vertical-align: 0.06em;
+  }
+
+  /* ---- plates ---- */
+  .plates { border-top: 1px solid var(--rule); }
+  .plate {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr auto;
+    gap: 0 1.25rem;
+    align-items: start;
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    transition: background .18s ease;
+  }
+  .plate:hover { background: var(--paper-2); }
+  .plate .n {
+    font-size: 0.78rem;
+    color: var(--ink-2);
+    padding-top: 0.42rem;
+    letter-spacing: 0.06em;
+  }
+  .plate h2 {
+    grid-column: 2;
+    margin: 0;
+    font-size: clamp(1.15rem, 2.6vw, 1.5rem);
+    letter-spacing: -0.015em;
+    font-weight: 650;
+    transition: transform .3s cubic-bezier(0.22, 1.15, 0.36, 1);
+  }
+  .plate:hover h2 { transform: translateY(-2px); }
+  .plate .arrow { display: inline-block; margin-left: 0.4rem; color: var(--accent-ink); transition: transform .34s cubic-bezier(0.22, 1.15, 0.36, 1); }
+  .plate:hover .arrow { transform: translateX(6px); }
+  .plate .what { grid-column: 2; margin: 0.5rem 0 0; color: var(--ink-2); font-size: 0.97rem; max-width: 52ch; }
+  .plate .meta { grid-column: 2; margin-top: 0.7rem; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); }
+  .plate .fate {
+    grid-column: 3; grid-row: 1;
+    font-size: 0.64rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700;
+    border: 1px solid var(--rule-strong);
+    padding: 0.16rem 0.44rem;
+    white-space: nowrap;
+    margin-top: 0.34rem;
+  }
+  .fate.shipped { color: var(--pos); border-color: var(--pos); }
+  .fate.partial { color: var(--accent-ink); border-color: var(--accent-ink); }
+  .fate.aside   { color: var(--ink-2); }
+
+  @media (max-width: 40rem) {
+    .plate { grid-template-columns: 3rem 1fr; }
+    .plate .fate { grid-column: 2; grid-row: auto; margin-top: 0.7rem; justify-self: start; }
+    .plate h2, .plate .what, .plate .meta { grid-column: 2; }
+  }
+
+  /* ---- close ---- */
+  .close { padding: clamp(2.5rem, 6vw, 4rem) 0 clamp(3rem, 8vw, 5rem); }
+  .close p { color: var(--ink-2); margin: 0 0 1rem; }
+  .close a { color: var(--accent-ink); }
+
+  footer { border-top: 1px solid var(--rule); padding: 1.5rem 0 3rem; font-size: 0.82rem; color: var(--ink-2); }
+  .frow { display: flex; flex-wrap: wrap; gap: 0.6rem 1.5rem; justify-content: space-between; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="back" href="../">&larr; From GOAT to Scapegoat</a>
+    <a href="/">statcat</a>
+  </div>
+</div>
+
+<main>
+
+  <section class="masthead">
+    <div class="wrap reading">
+      <p class="kicker">The Lab &middot; Plates I&ndash;V</p>
+      <h1>Five ways to draw the same argument</h1>
+      <p class="lede">
+        Before the piece found its shape, it was five different pieces. These are
+        the working prototypes &mdash; kept exactly as they were the day they were
+        set aside, <strong>including the ones that lost</strong>.
+      </p>
+      <p class="lede">
+        Each plate below opens the real file. Two of them are the direct ancestors
+        of what the finished article does; one contributed only its words; two were
+        dead ends worth keeping.
+      </p>
+      <p class="disclaimer">
+        <span class="tag">Sample</span>
+        Every number in these prototypes is illustrative placeholder data. The
+        Reddit match threads have not been scraped yet, so nothing here is a
+        finding &mdash; these plates are about <em>form</em>, not results.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="plates">
+
+        <a class="plate" href="../landing.html">
+          <span class="n">Plate I</span>
+          <h2>The almanac hero<span class="arrow">&rarr;</span></h2>
+          <span class="fate partial">Copy survived</span>
+          <p class="what">
+            The first landing screen: a broadsheet masthead, a single sentiment
+            gauge running &minus;1 to +1 across both finals, and a Scrape &rarr;
+            Analyze &rarr; Visualize method strip. The wordmark and the
+            &ldquo;did they change, or did we?&rdquo; line were right on the first
+            try. The layout around them was not &mdash; it read as a dashboard,
+            and the piece needed to read as an essay.
+          </p>
+          <p class="meta">Static &middot; hand-rolled CSS</p>
+        </a>
+
+        <a class="plate" href="../aspect-flow.html">
+          <span class="n">Plate II</span>
+          <h2>Theme flow, clicked<span class="arrow">&rarr;</span></h2>
+          <span class="fate aside">Set aside</span>
+          <p class="what">
+            Five recurring themes in the discourse, each with its share of the
+            conversation and its tone in 2022 versus 2026. Navigated by clicking
+            a theme to bring it forward. It worked, and nobody clicked &mdash;
+            which is the whole argument for the plate that follows.
+          </p>
+          <p class="meta">Interactive &middot; no library</p>
+        </a>
+
+        <a class="plate" href="../scrolly-flow.html">
+          <span class="n">Plate III</span>
+          <h2>Theme flow, scrolled<span class="arrow">&rarr;</span></h2>
+          <span class="fate shipped">Shipped</span>
+          <p class="what">
+            The same five themes, but the scroll position drives the highlight:
+            step cards on one side, the flow diagram holding still on the other.
+            Passive readers get the whole sequence for free. This mechanic is what
+            the finished article&rsquo;s <em>&ldquo;Same topics, opposite
+            verdict&rdquo;</em> section became.
+          </p>
+          <p class="meta">Scrollytelling &middot; IntersectionObserver</p>
+        </a>
+
+        <a class="plate" href="../flow-d3.html">
+          <span class="n">Plate IV</span>
+          <h2>Theme flow, rebuilt in D3<span class="arrow">&rarr;</span></h2>
+          <span class="fate aside">Set aside</span>
+          <p class="what">
+            The theme diagram redrawn with D3 scales and transitions, to see
+            whether the library bought anything the hand-rolled version
+            didn&rsquo;t. For five fixed categories it bought about 280&nbsp;KB and
+            no new expressiveness. Kept as the receipt for that decision.
+          </p>
+          <p class="meta">D3 v7 &middot; inlined</p>
+        </a>
+
+        <a class="plate" href="../timeline-d3.html">
+          <span class="n">Plate V</span>
+          <h2>Ninety minutes, two verdicts<span class="arrow">&rarr;</span></h2>
+          <span class="fate shipped">Shipped</span>
+          <p class="what">
+            The centerpiece: sentiment plotted minute by minute across both
+            finals, stacked so the same match clock runs down two panels at once.
+            Here D3 earned its weight &mdash; continuous time, event annotations,
+            and a shared hover that has to hit the right comment in two datasets.
+            This became the article&rsquo;s timeline.
+          </p>
+          <p class="meta">D3 v7 &middot; linked panels</p>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="close">
+    <div class="wrap reading">
+      <p>
+        These files are frozen snapshots, not maintained pages &mdash; they can be
+        rough at small widths and they don&rsquo;t share the article&rsquo;s
+        polish. That is the point of keeping them.
+      </p>
+      <p><a href="../">&larr; Back to the article</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="frow">
+      <span><b>From GOAT to Scapegoat</b> &mdash; the lab</span>
+      <span>Chloe Zhang &middot; <a href="/">statcat</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
