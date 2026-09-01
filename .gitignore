@@ -4,3 +4,18 @@ __pycache__/
 .venv/
 venv/
 .DS_Store
+
+# ---------------------------------------------------------------------------
+# This repo is PUBLIC and GitHub Pages serves every file in it, so anything
+# committed under data/ becomes a public download. Reddit corpora contain
+# usernames and comment bodies — including comments their authors have since
+# deleted, which the archive keeps and Reddit does not. None of that ships.
+#
+# Default: no JSON under data/ is committed.
+data/raw/
+data/*.json
+#
+# Publishable, de-identified aggregates go in data/public/ and must be added
+# on purpose. Nothing lands there unless it has no usernames and no verbatim
+# comment bodies.
+# ---------------------------------------------------------------------------
