@@ -31,19 +31,48 @@ load_dotenv()
 API = "https://www.googleapis.com/youtube/v3"
 
 # Fill video_id in once --search shows you the right videos.
+# Two channel pairs, so the comparison can be checked against a second
+# audience rather than resting on one channel's commenters.
+#
+# Pairing rule: same channel, same video type, same timing relative to the
+# match. FOX is the primary pair because both titles are plainly worded;
+# FIFA's 2022 title ("THE GREATEST FINAL EVER?!") primes positive comments
+# in a way its neutral 2026 title does not, which would show up as sentiment.
 VIDEOS = [
     {
-        "label": "arg_fra_2022",
-        "video_id": None,
+        "label": "fox_arg_fra_2022",
+        "video_id": "Mxkg3qLIPC8",
         "match": "Argentina vs France",
         "event": "2022 World Cup Final (Qatar)",
+        "channel_pair": "fox",
+        "argentina_result": "won",
         "search": "Argentina France 2022 World Cup final highlights",
     },
     {
-        "label": "arg_spa_2026",
-        "video_id": None,
+        "label": "fox_arg_spa_2026",
+        "video_id": "x-cpRHf4xd4",
         "match": "Spain vs Argentina",
         "event": "2026 World Cup Final",
+        "channel_pair": "fox",
+        "argentina_result": "lost",
+        "search": "Spain Argentina 2026 World Cup final highlights",
+    },
+    {
+        "label": "fifa_arg_fra_2022",
+        "video_id": "zhEWqfP6V_w",
+        "match": "Argentina vs France",
+        "event": "2022 World Cup Final (Qatar)",
+        "channel_pair": "fifa",
+        "argentina_result": "won",
+        "search": "Argentina France 2022 World Cup final highlights",
+    },
+    {
+        "label": "fifa_arg_spa_2026",
+        "video_id": "6HaHNYjnghE",
+        "match": "Spain vs Argentina",
+        "event": "2026 World Cup Final",
+        "channel_pair": "fifa",
+        "argentina_result": "lost",
         "search": "Spain Argentina 2026 World Cup final highlights",
     },
 ]
@@ -113,11 +142,11 @@ def do_search() -> None:
             continue
         rows = describe(ids)
         rows.sort(key=lambda r: (r["comments"] or 0), reverse=True)
-        print(f"    {'comments':>9}  {'views':>12}  {'published':<11} channel / title")
+        print(f"    {'video_id':<13} {'comments':>9}  {'views':>12}  {'published':<11} channel / title")
         for r in rows:
             c = "disabled" if r["comments"] is None else f"{r['comments']:,}"
-            print(f"    {c:>9}  {r['views']:>12,}  {r['published_at'][:10]:<11} "
-                  f"{r['channel'][:22]} / {r['title'][:58]}")
+            print(f"    {r['video_id']:<13} {c:>9}  {r['views']:>12,}  {r['published_at'][:10]:<11} "
+                  f"{r['channel'][:20]} / {r['title'][:52]}")
         print("    -> put the chosen id in VIDEOS[...]['video_id'] in this file")
 
 
