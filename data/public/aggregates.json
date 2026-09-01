@@ -1,0 +1,4758 @@
+{
+  "generated_at": "2026-08-31T22:52:21-04:00",
+  "method": {
+    "source": "YouTube Data API v3, public comments",
+    "model": "cardiffnlp/twitter-xlm-roberta-base-sentiment",
+    "sentiment": "P(positive) - P(negative), range -1 to +1",
+    "scope": "top-level comments only; replies excluded (API caps inline replies at 5/thread, so replies were ~40% captured)",
+    "window_days": 42,
+    "window_note": "measured from each video's publication date, so both finals are compared over equal elapsed time",
+    "attribution": "keyword match on team/player names, accent-insensitive",
+    "keywords": {
+      "argentina": [
+        "argentina",
+        "argentine",
+        "argentinian",
+        "albiceleste",
+        "afa",
+        "messi",
+        "leo messi",
+        "di maria",
+        "dimaria",
+        "martinez",
+        "dibu",
+        "otamendi",
+        "de paul",
+        "depaul",
+        "enzo",
+        "mac allister",
+        "macallister",
+        "julian alvarez",
+        "lautaro",
+        "paredes",
+        "scaloni",
+        "argentino"
+      ],
+      "france": [
+        "france",
+        "french",
+        "les bleus",
+        "mbappe",
+        "griezmann",
+        "giroud",
+        "dembele",
+        "tchouameni",
+        "lloris",
+        "deschamps",
+        "francia",
+        "hernandez"
+      ],
+      "spain": [
+        "spain",
+        "spanish",
+        "espana",
+        "la roja",
+        "yamal",
+        "lamine",
+        "ferran torres",
+        "ferran",
+        "pedri",
+        "gavi",
+        "rodri",
+        "cucurella",
+        "morata",
+        "unai simon",
+        "de la fuente",
+        "espanol",
+        "spaniard"
+      ]
+    },
+    "topic_keywords": {
+      "refereeing": [
+        "ref",
+        "refs",
+        "referee",
+        "reff",
+        "var",
+        "penalty",
+        "penalties",
+        "pen",
+        "offside",
+        "handball",
+        "foul",
+        "rigged",
+        "robbed",
+        "cheat",
+        "cheated",
+        "cheating",
+        "biased",
+        "bias",
+        "corrupt",
+        "fix",
+        "fixed",
+        "arbitro",
+        "penal",
+        "robaron",
+        "robo",
+        "tramposo",
+        "tramposos",
+        "corrupto"
+      ],
+      "conduct": [
+        "disrespect",
+        "disrespectful",
+        "arrogant",
+        "arrogance",
+        "classless",
+        "humble",
+        "humility",
+        "respect",
+        "taunt",
+        "taunting",
+        "mock",
+        "mocking",
+        "gloat",
+        "gloating",
+        "provoke",
+        "provoking",
+        "trash talk",
+        "bobo",
+        "celebration",
+        "celebrate",
+        "celebrating",
+        "sportsmanship",
+        "toxic",
+        "humilde",
+        "arrogante",
+        "irrespetuoso",
+        "falta de respeto",
+        "burla"
+      ],
+      "messi": [
+        "messi",
+        "leo",
+        "goat",
+        "greatest",
+        "best player",
+        "el diez",
+        "la pulga",
+        "maradona",
+        "legend",
+        "got",
+        "d10s"
+      ],
+      "tactics": [
+        "tactics",
+        "tactical",
+        "formation",
+        "midfield",
+        "defense",
+        "defence",
+        "possession",
+        "press",
+        "pressing",
+        "coach",
+        "manager",
+        "scaloni",
+        "substitution",
+        "sub",
+        "lineup",
+        "counter",
+        "tactica",
+        "entrenador",
+        "formacion",
+        "mediocampo",
+        "defensa"
+      ],
+      "crowd": [
+        "fans",
+        "fan",
+        "crowd",
+        "boo",
+        "booed",
+        "booing",
+        "whistle",
+        "whistled",
+        "stadium",
+        "supporters",
+        "atmosphere",
+        "hooligan",
+        "chant",
+        "chanting",
+        "aficionados",
+        "hinchada",
+        "silbar",
+        "silbaron",
+        "abuchear",
+        "publico"
+      ]
+    },
+    "topic_note": "share is the percentage of scored comments in the window mentioning that topic; a comment can raise several"
+  },
+  "datasets": {
+    "fox_arg_fra_2022": {
+      "video_id": "Mxkg3qLIPC8",
+      "channel": "FOX Soccer",
+      "title": "Argentina vs. France Highlights | 2022 FIFA World Cup Final",
+      "published_at": "2022-12-18T18:10:48Z",
+      "match": "Argentina vs France",
+      "event": "2022 World Cup Final (Qatar)",
+      "n_scored": 7947,
+      "overall": {
+        "mean": 0.25,
+        "pct_negative": 26.9,
+        "pct_positive": 57.8
+      },
+      "by_team": {
+        "argentina": {
+          "n": 3157,
+          "mean": 0.3492,
+          "median": 0.6851,
+          "pct_negative": 21.4,
+          "pct_positive": 65.3
+        },
+        "france": {
+          "n": 1803,
+          "mean": 0.142,
+          "median": 0.3014,
+          "pct_negative": 32.3,
+          "pct_positive": 51.8
+        },
+        "spain": {
+          "n": 38,
+          "mean": -0.0011,
+          "median": -0.0794,
+          "pct_negative": 39.5,
+          "pct_positive": 39.5
+        }
+      },
+      "by_topic": {
+        "refereeing": {
+          "n": 981,
+          "share": 12.3,
+          "mean": -0.3417,
+          "pct_negative": 64.1,
+          "n_argentina": 461,
+          "mean_argentina": -0.2297
+        },
+        "conduct": {
+          "n": 130,
+          "share": 1.6,
+          "mean": 0.169,
+          "pct_negative": 32.3,
+          "n_argentina": 86,
+          "mean_argentina": 0.21
+        },
+        "messi": {
+          "n": 2403,
+          "share": 30.2,
+          "mean": 0.4677,
+          "pct_negative": 15.7,
+          "n_argentina": 1860,
+          "mean_argentina": 0.431
+        },
+        "tactics": {
+          "n": 81,
+          "share": 1.0,
+          "mean": -0.1596,
+          "pct_negative": 51.9,
+          "n_argentina": 57,
+          "mean_argentina": -0.0156
+        },
+        "crowd": {
+          "n": 238,
+          "share": 3.0,
+          "mean": 0.3091,
+          "pct_negative": 25.2,
+          "n_argentina": 153,
+          "mean_argentina": 0.3707
+        }
+      },
+      "by_day": [
+        {
+          "day": 0,
+          "n": 6644,
+          "mean": 0.2822
+        },
+        {
+          "day": 1,
+          "n": 470,
+          "mean": 0.1072
+        },
+        {
+          "day": 2,
+          "n": 227,
+          "mean": 0.0463
+        },
+        {
+          "day": 3,
+          "n": 91,
+          "mean": 0.1367
+        },
+        {
+          "day": 4,
+          "n": 64,
+          "mean": -0.0433
+        },
+        {
+          "day": 5,
+          "n": 50,
+          "mean": 0.0677
+        },
+        {
+          "day": 6,
+          "n": 41,
+          "mean": 0.2365
+        },
+        {
+          "day": 7,
+          "n": 27,
+          "mean": 0.1111
+        },
+        {
+          "day": 8,
+          "n": 28,
+          "mean": -0.0675
+        },
+        {
+          "day": 9,
+          "n": 28,
+          "mean": 0.152
+        },
+        {
+          "day": 10,
+          "n": 19,
+          "mean": 0.11
+        },
+        {
+          "day": 11,
+          "n": 10,
+          "mean": -0.0987
+        },
+        {
+          "day": 12,
+          "n": 8,
+          "mean": 0.2
+        },
+        {
+          "day": 13,
+          "n": 20,
+          "mean": 0.1204
+        },
+        {
+          "day": 14,
+          "n": 12,
+          "mean": 0.2626
+        },
+        {
+          "day": 15,
+          "n": 7,
+          "mean": 0.0779
+        },
+        {
+          "day": 16,
+          "n": 7,
+          "mean": -0.1086
+        },
+        {
+          "day": 17,
+          "n": 14,
+          "mean": 0.3002
+        },
+        {
+          "day": 18,
+          "n": 8,
+          "mean": -0.6481
+        },
+        {
+          "day": 19,
+          "n": 18,
+          "mean": 0.0975
+        },
+        {
+          "day": 20,
+          "n": 10,
+          "mean": -0.0264
+        },
+        {
+          "day": 21,
+          "n": 7,
+          "mean": 0.324
+        },
+        {
+          "day": 22,
+          "n": 13,
+          "mean": 0.43
+        },
+        {
+          "day": 23,
+          "n": 9,
+          "mean": 0.0243
+        },
+        {
+          "day": 24,
+          "n": 12,
+          "mean": 0.1563
+        },
+        {
+          "day": 25,
+          "n": 8,
+          "mean": -0.0252
+        },
+        {
+          "day": 26,
+          "n": 12,
+          "mean": -0.0136
+        },
+        {
+          "day": 27,
+          "n": 5,
+          "mean": -0.2384
+        },
+        {
+          "day": 28,
+          "n": 12,
+          "mean": 0.0155
+        },
+        {
+          "day": 29,
+          "n": 8,
+          "mean": 0.1237
+        },
+        {
+          "day": 30,
+          "n": 6,
+          "mean": 0.2066
+        },
+        {
+          "day": 31,
+          "n": 13,
+          "mean": -0.2287
+        },
+        {
+          "day": 32,
+          "n": 1,
+          "mean": -0.7308
+        },
+        {
+          "day": 33,
+          "n": 4,
+          "mean": 0.4272
+        },
+        {
+          "day": 34,
+          "n": 8,
+          "mean": 0.1891
+        },
+        {
+          "day": 35,
+          "n": 2,
+          "mean": 0.8795
+        },
+        {
+          "day": 36,
+          "n": 9,
+          "mean": -0.0792
+        },
+        {
+          "day": 37,
+          "n": 5,
+          "mean": 0.3149
+        },
+        {
+          "day": 38,
+          "n": 1,
+          "mean": 0.0185
+        },
+        {
+          "day": 39,
+          "n": 3,
+          "mean": 0.0204
+        },
+        {
+          "day": 40,
+          "n": 6,
+          "mean": 0.2138
+        }
+      ],
+      "by_day_team": {
+        "argentina": [
+          {
+            "t": 0,
+            "n": 2719,
+            "mean": 0.386
+          },
+          {
+            "t": 1,
+            "n": 165,
+            "mean": 0.1427
+          },
+          {
+            "t": 2,
+            "n": 79,
+            "mean": -0.0226
+          },
+          {
+            "t": 3,
+            "n": 27,
+            "mean": 0.3475
+          },
+          {
+            "t": 4,
+            "n": 22,
+            "mean": 0.1316
+          },
+          {
+            "t": 5,
+            "n": 18,
+            "mean": 0.08
+          },
+          {
+            "t": 6,
+            "n": 11,
+            "mean": 0.3829
+          },
+          {
+            "t": 7,
+            "n": 10,
+            "mean": -0.0799
+          },
+          {
+            "t": 8,
+            "n": 6,
+            "mean": -0.2526
+          },
+          {
+            "t": 9,
+            "n": 11,
+            "mean": 0.4592
+          },
+          {
+            "t": 10,
+            "n": 5,
+            "mean": 0.5752
+          },
+          {
+            "t": 13,
+            "n": 5,
+            "mean": 0.0045
+          },
+          {
+            "t": 14,
+            "n": 6,
+            "mean": 0.4292
+          },
+          {
+            "t": 17,
+            "n": 5,
+            "mean": 0.465
+          },
+          {
+            "t": 34,
+            "n": 5,
+            "mean": 0.129
+          }
+        ],
+        "france": [
+          {
+            "t": 0,
+            "n": 1484,
+            "mean": 0.1732
+          },
+          {
+            "t": 1,
+            "n": 115,
+            "mean": 0.0502
+          },
+          {
+            "t": 2,
+            "n": 53,
+            "mean": -0.0632
+          },
+          {
+            "t": 3,
+            "n": 22,
+            "mean": 0.0659
+          },
+          {
+            "t": 4,
+            "n": 18,
+            "mean": 0.1338
+          },
+          {
+            "t": 5,
+            "n": 14,
+            "mean": -0.2052
+          },
+          {
+            "t": 6,
+            "n": 13,
+            "mean": 0.1697
+          },
+          {
+            "t": 8,
+            "n": 5,
+            "mean": -0.2522
+          },
+          {
+            "t": 9,
+            "n": 13,
+            "mean": -0.1407
+          },
+          {
+            "t": 10,
+            "n": 5,
+            "mean": -0.1319
+          },
+          {
+            "t": 31,
+            "n": 5,
+            "mean": -0.6402
+          }
+        ],
+        "spain": [
+          {
+            "t": 0,
+            "n": 29,
+            "mean": 0.079
+          }
+        ]
+      },
+      "by_hour": [
+        {
+          "t": 0,
+          "n": 2218,
+          "mean": 0.3613
+        },
+        {
+          "t": 1,
+          "n": 1070,
+          "mean": 0.2996
+        },
+        {
+          "t": 2,
+          "n": 590,
+          "mean": 0.2621
+        },
+        {
+          "t": 3,
+          "n": 451,
+          "mean": 0.2713
+        },
+        {
+          "t": 4,
+          "n": 341,
+          "mean": 0.27
+        },
+        {
+          "t": 5,
+          "n": 291,
+          "mean": 0.225
+        },
+        {
+          "t": 6,
+          "n": 249,
+          "mean": 0.233
+        },
+        {
+          "t": 7,
+          "n": 248,
+          "mean": 0.2342
+        },
+        {
+          "t": 8,
+          "n": 206,
+          "mean": 0.2436
+        },
+        {
+          "t": 9,
+          "n": 187,
+          "mean": 0.2621
+        },
+        {
+          "t": 10,
+          "n": 158,
+          "mean": 0.1926
+        },
+        {
+          "t": 11,
+          "n": 114,
+          "mean": 0.1725
+        },
+        {
+          "t": 12,
+          "n": 84,
+          "mean": 0.0229
+        },
+        {
+          "t": 13,
+          "n": 65,
+          "mean": 0.1967
+        },
+        {
+          "t": 14,
+          "n": 36,
+          "mean": -0.0314
+        },
+        {
+          "t": 15,
+          "n": 28,
+          "mean": 0.2372
+        },
+        {
+          "t": 16,
+          "n": 23,
+          "mean": 0.1537
+        },
+        {
+          "t": 17,
+          "n": 27,
+          "mean": 0.0011
+        },
+        {
+          "t": 18,
+          "n": 36,
+          "mean": 0.0475
+        },
+        {
+          "t": 19,
+          "n": 45,
+          "mean": 0.2859
+        },
+        {
+          "t": 20,
+          "n": 48,
+          "mean": 0.0614
+        },
+        {
+          "t": 21,
+          "n": 43,
+          "mean": 0.1009
+        },
+        {
+          "t": 22,
+          "n": 38,
+          "mean": 0.1515
+        },
+        {
+          "t": 23,
+          "n": 48,
+          "mean": 0.0301
+        },
+        {
+          "t": 24,
+          "n": 54,
+          "mean": 0.1692
+        },
+        {
+          "t": 25,
+          "n": 36,
+          "mean": 0.1696
+        },
+        {
+          "t": 26,
+          "n": 36,
+          "mean": 0.2347
+        },
+        {
+          "t": 27,
+          "n": 24,
+          "mean": 0.1187
+        },
+        {
+          "t": 28,
+          "n": 28,
+          "mean": 0.1436
+        },
+        {
+          "t": 29,
+          "n": 22,
+          "mean": 0.0194
+        },
+        {
+          "t": 30,
+          "n": 34,
+          "mean": 0.1638
+        },
+        {
+          "t": 31,
+          "n": 29,
+          "mean": 0.163
+        },
+        {
+          "t": 32,
+          "n": 33,
+          "mean": -0.0146
+        },
+        {
+          "t": 33,
+          "n": 19,
+          "mean": 0.0254
+        },
+        {
+          "t": 34,
+          "n": 20,
+          "mean": -0.0448
+        },
+        {
+          "t": 35,
+          "n": 18,
+          "mean": -0.1045
+        },
+        {
+          "t": 36,
+          "n": 9,
+          "mean": 0.404
+        },
+        {
+          "t": 37,
+          "n": 12,
+          "mean": -0.145
+        },
+        {
+          "t": 38,
+          "n": 9,
+          "mean": -0.1395
+        },
+        {
+          "t": 40,
+          "n": 10,
+          "mean": 0.3817
+        },
+        {
+          "t": 41,
+          "n": 7,
+          "mean": 0.0855
+        },
+        {
+          "t": 43,
+          "n": 16,
+          "mean": -0.081
+        },
+        {
+          "t": 45,
+          "n": 13,
+          "mean": -0.1275
+        },
+        {
+          "t": 46,
+          "n": 15,
+          "mean": 0.3411
+        },
+        {
+          "t": 47,
+          "n": 15,
+          "mean": 0.1573
+        }
+      ],
+      "by_hour_team": {
+        "argentina": [
+          {
+            "t": 0,
+            "n": 987,
+            "mean": 0.4527
+          },
+          {
+            "t": 1,
+            "n": 447,
+            "mean": 0.3989
+          },
+          {
+            "t": 2,
+            "n": 225,
+            "mean": 0.3538
+          },
+          {
+            "t": 3,
+            "n": 181,
+            "mean": 0.3371
+          },
+          {
+            "t": 4,
+            "n": 139,
+            "mean": 0.4861
+          },
+          {
+            "t": 5,
+            "n": 117,
+            "mean": 0.3996
+          },
+          {
+            "t": 6,
+            "n": 101,
+            "mean": 0.2767
+          },
+          {
+            "t": 7,
+            "n": 105,
+            "mean": 0.3496
+          },
+          {
+            "t": 8,
+            "n": 78,
+            "mean": 0.3444
+          },
+          {
+            "t": 9,
+            "n": 63,
+            "mean": 0.268
+          },
+          {
+            "t": 10,
+            "n": 61,
+            "mean": 0.2962
+          },
+          {
+            "t": 11,
+            "n": 34,
+            "mean": 0.1727
+          },
+          {
+            "t": 12,
+            "n": 35,
+            "mean": 0.2298
+          },
+          {
+            "t": 13,
+            "n": 16,
+            "mean": 0.1893
+          },
+          {
+            "t": 14,
+            "n": 14,
+            "mean": 0.236
+          },
+          {
+            "t": 15,
+            "n": 12,
+            "mean": 0.342
+          },
+          {
+            "t": 16,
+            "n": 8,
+            "mean": 0.0289
+          },
+          {
+            "t": 17,
+            "n": 9,
+            "mean": -0.037
+          },
+          {
+            "t": 18,
+            "n": 18,
+            "mean": 0.1472
+          },
+          {
+            "t": 19,
+            "n": 14,
+            "mean": 0.1212
+          },
+          {
+            "t": 20,
+            "n": 14,
+            "mean": 0.2387
+          },
+          {
+            "t": 21,
+            "n": 12,
+            "mean": 0.2595
+          },
+          {
+            "t": 22,
+            "n": 12,
+            "mean": 0.4042
+          },
+          {
+            "t": 23,
+            "n": 17,
+            "mean": 0.1863
+          },
+          {
+            "t": 24,
+            "n": 17,
+            "mean": 0.1412
+          },
+          {
+            "t": 25,
+            "n": 8,
+            "mean": 0.4597
+          },
+          {
+            "t": 26,
+            "n": 11,
+            "mean": 0.2921
+          },
+          {
+            "t": 27,
+            "n": 7,
+            "mean": 0.1007
+          },
+          {
+            "t": 28,
+            "n": 15,
+            "mean": 0.0323
+          },
+          {
+            "t": 29,
+            "n": 6,
+            "mean": -0.0407
+          },
+          {
+            "t": 30,
+            "n": 11,
+            "mean": 0.3735
+          },
+          {
+            "t": 31,
+            "n": 12,
+            "mean": 0.182
+          },
+          {
+            "t": 32,
+            "n": 21,
+            "mean": 0.0479
+          },
+          {
+            "t": 33,
+            "n": 5,
+            "mean": 0.1288
+          },
+          {
+            "t": 35,
+            "n": 6,
+            "mean": 0.0393
+          },
+          {
+            "t": 36,
+            "n": 5,
+            "mean": 0.4061
+          },
+          {
+            "t": 45,
+            "n": 7,
+            "mean": -0.0224
+          },
+          {
+            "t": 46,
+            "n": 8,
+            "mean": 0.2602
+          },
+          {
+            "t": 47,
+            "n": 5,
+            "mean": 0.2209
+          }
+        ],
+        "france": [
+          {
+            "t": 0,
+            "n": 470,
+            "mean": 0.2074
+          },
+          {
+            "t": 1,
+            "n": 237,
+            "mean": 0.1867
+          },
+          {
+            "t": 2,
+            "n": 136,
+            "mean": 0.2327
+          },
+          {
+            "t": 3,
+            "n": 105,
+            "mean": 0.2366
+          },
+          {
+            "t": 4,
+            "n": 77,
+            "mean": 0.2082
+          },
+          {
+            "t": 5,
+            "n": 65,
+            "mean": 0.0871
+          },
+          {
+            "t": 6,
+            "n": 57,
+            "mean": 0.1783
+          },
+          {
+            "t": 7,
+            "n": 60,
+            "mean": 0.1712
+          },
+          {
+            "t": 8,
+            "n": 47,
+            "mean": 0.1702
+          },
+          {
+            "t": 9,
+            "n": 43,
+            "mean": -0.0308
+          },
+          {
+            "t": 10,
+            "n": 44,
+            "mean": 0.1842
+          },
+          {
+            "t": 11,
+            "n": 27,
+            "mean": -0.0129
+          },
+          {
+            "t": 12,
+            "n": 21,
+            "mean": 0.0211
+          },
+          {
+            "t": 13,
+            "n": 12,
+            "mean": 0.0392
+          },
+          {
+            "t": 14,
+            "n": 13,
+            "mean": -0.1351
+          },
+          {
+            "t": 15,
+            "n": 10,
+            "mean": -0.0295
+          },
+          {
+            "t": 17,
+            "n": 5,
+            "mean": -0.4516
+          },
+          {
+            "t": 18,
+            "n": 12,
+            "mean": -0.1852
+          },
+          {
+            "t": 19,
+            "n": 13,
+            "mean": 0.1376
+          },
+          {
+            "t": 20,
+            "n": 9,
+            "mean": -0.0633
+          },
+          {
+            "t": 21,
+            "n": 6,
+            "mean": 0.5967
+          },
+          {
+            "t": 22,
+            "n": 7,
+            "mean": 0.2935
+          },
+          {
+            "t": 23,
+            "n": 6,
+            "mean": -0.0601
+          },
+          {
+            "t": 24,
+            "n": 11,
+            "mean": 0.3045
+          },
+          {
+            "t": 25,
+            "n": 10,
+            "mean": 0.0286
+          },
+          {
+            "t": 26,
+            "n": 7,
+            "mean": 0.042
+          },
+          {
+            "t": 27,
+            "n": 10,
+            "mean": -0.1258
+          },
+          {
+            "t": 29,
+            "n": 8,
+            "mean": 0.1424
+          },
+          {
+            "t": 30,
+            "n": 10,
+            "mean": 0.1365
+          },
+          {
+            "t": 32,
+            "n": 10,
+            "mean": 0.1378
+          },
+          {
+            "t": 45,
+            "n": 5,
+            "mean": -0.0253
+          },
+          {
+            "t": 47,
+            "n": 5,
+            "mean": 0.0776
+          }
+        ],
+        "spain": [
+          {
+            "t": 0,
+            "n": 8,
+            "mean": 0.198
+          }
+        ]
+      },
+      "unattributed": 3924
+    },
+    "fox_arg_spa_2026": {
+      "video_id": "x-cpRHf4xd4",
+      "channel": "FOX Sports",
+      "title": "Spain vs Argentina Highlights 🌎🏆 2026 FIFA World Cup™ | Final",
+      "published_at": "2026-07-19T22:42:12Z",
+      "match": "Spain vs Argentina",
+      "event": "2026 World Cup Final",
+      "n_scored": 5867,
+      "overall": {
+        "mean": -0.0489,
+        "pct_negative": 42.8,
+        "pct_positive": 38.7
+      },
+      "by_team": {
+        "argentina": {
+          "n": 2505,
+          "mean": -0.2775,
+          "median": -0.4969,
+          "pct_negative": 57.2,
+          "pct_positive": 25.0
+        },
+        "france": {
+          "n": 113,
+          "mean": 0.0075,
+          "median": 0.0089,
+          "pct_negative": 36.3,
+          "pct_positive": 40.7
+        },
+        "spain": {
+          "n": 2450,
+          "mean": 0.176,
+          "median": 0.3875,
+          "pct_negative": 29.7,
+          "pct_positive": 53.5
+        }
+      },
+      "by_topic": {
+        "refereeing": {
+          "n": 584,
+          "share": 10.0,
+          "mean": -0.4614,
+          "pct_negative": 70.5,
+          "n_argentina": 350,
+          "mean_argentina": -0.471
+        },
+        "conduct": {
+          "n": 141,
+          "share": 2.4,
+          "mean": -0.203,
+          "pct_negative": 53.2,
+          "n_argentina": 99,
+          "mean_argentina": -0.4203
+        },
+        "messi": {
+          "n": 883,
+          "share": 15.1,
+          "mean": -0.1985,
+          "pct_negative": 53.2,
+          "n_argentina": 763,
+          "mean_argentina": -0.2489
+        },
+        "tactics": {
+          "n": 140,
+          "share": 2.4,
+          "mean": -0.1945,
+          "pct_negative": 52.1,
+          "n_argentina": 88,
+          "mean_argentina": -0.4271
+        },
+        "crowd": {
+          "n": 209,
+          "share": 3.6,
+          "mean": -0.1991,
+          "pct_negative": 53.6,
+          "n_argentina": 146,
+          "mean_argentina": -0.3315
+        }
+      },
+      "by_day": [
+        {
+          "day": 0,
+          "n": 4926,
+          "mean": -0.0366
+        },
+        {
+          "day": 1,
+          "n": 323,
+          "mean": -0.1208
+        },
+        {
+          "day": 2,
+          "n": 139,
+          "mean": -0.0485
+        },
+        {
+          "day": 3,
+          "n": 68,
+          "mean": -0.2142
+        },
+        {
+          "day": 4,
+          "n": 62,
+          "mean": -0.1903
+        },
+        {
+          "day": 5,
+          "n": 30,
+          "mean": -0.1584
+        },
+        {
+          "day": 6,
+          "n": 29,
+          "mean": -0.1612
+        },
+        {
+          "day": 7,
+          "n": 19,
+          "mean": 0.0548
+        },
+        {
+          "day": 8,
+          "n": 18,
+          "mean": 0.1627
+        },
+        {
+          "day": 9,
+          "n": 10,
+          "mean": 0.0147
+        },
+        {
+          "day": 10,
+          "n": 10,
+          "mean": -0.1092
+        },
+        {
+          "day": 11,
+          "n": 7,
+          "mean": -0.2337
+        },
+        {
+          "day": 12,
+          "n": 16,
+          "mean": -0.1218
+        },
+        {
+          "day": 13,
+          "n": 9,
+          "mean": 0.1317
+        },
+        {
+          "day": 14,
+          "n": 10,
+          "mean": -0.0813
+        },
+        {
+          "day": 15,
+          "n": 11,
+          "mean": 0.0713
+        },
+        {
+          "day": 16,
+          "n": 8,
+          "mean": -0.0124
+        },
+        {
+          "day": 17,
+          "n": 10,
+          "mean": -0.0927
+        },
+        {
+          "day": 18,
+          "n": 9,
+          "mean": -0.228
+        },
+        {
+          "day": 19,
+          "n": 15,
+          "mean": -0.3361
+        },
+        {
+          "day": 20,
+          "n": 11,
+          "mean": -0.3036
+        },
+        {
+          "day": 21,
+          "n": 11,
+          "mean": -0.2388
+        },
+        {
+          "day": 22,
+          "n": 4,
+          "mean": -0.2684
+        },
+        {
+          "day": 23,
+          "n": 6,
+          "mean": -0.7019
+        },
+        {
+          "day": 24,
+          "n": 9,
+          "mean": -0.1247
+        },
+        {
+          "day": 25,
+          "n": 9,
+          "mean": 0.214
+        },
+        {
+          "day": 26,
+          "n": 10,
+          "mean": 0.0136
+        },
+        {
+          "day": 27,
+          "n": 6,
+          "mean": -0.246
+        },
+        {
+          "day": 28,
+          "n": 8,
+          "mean": 0.0411
+        },
+        {
+          "day": 29,
+          "n": 7,
+          "mean": -0.4439
+        },
+        {
+          "day": 30,
+          "n": 7,
+          "mean": 0.2781
+        },
+        {
+          "day": 31,
+          "n": 7,
+          "mean": -0.1447
+        },
+        {
+          "day": 32,
+          "n": 4,
+          "mean": -0.5221
+        },
+        {
+          "day": 33,
+          "n": 3,
+          "mean": 0.1815
+        },
+        {
+          "day": 34,
+          "n": 8,
+          "mean": -0.1854
+        },
+        {
+          "day": 35,
+          "n": 3,
+          "mean": 0.0955
+        },
+        {
+          "day": 36,
+          "n": 4,
+          "mean": -0.4174
+        },
+        {
+          "day": 37,
+          "n": 2,
+          "mean": -0.1955
+        },
+        {
+          "day": 38,
+          "n": 1,
+          "mean": -0.8496
+        },
+        {
+          "day": 39,
+          "n": 3,
+          "mean": 0.7157
+        },
+        {
+          "day": 40,
+          "n": 8,
+          "mean": 0.1563
+        },
+        {
+          "day": 41,
+          "n": 7,
+          "mean": -0.2502
+        }
+      ],
+      "by_day_team": {
+        "argentina": [
+          {
+            "t": 0,
+            "n": 2136,
+            "mean": -0.2608
+          },
+          {
+            "t": 1,
+            "n": 134,
+            "mean": -0.3962
+          },
+          {
+            "t": 2,
+            "n": 48,
+            "mean": -0.3943
+          },
+          {
+            "t": 3,
+            "n": 29,
+            "mean": -0.5609
+          },
+          {
+            "t": 4,
+            "n": 33,
+            "mean": -0.4132
+          },
+          {
+            "t": 5,
+            "n": 16,
+            "mean": -0.1582
+          },
+          {
+            "t": 6,
+            "n": 8,
+            "mean": -0.5651
+          },
+          {
+            "t": 8,
+            "n": 5,
+            "mean": -0.3114
+          },
+          {
+            "t": 9,
+            "n": 7,
+            "mean": 0.0932
+          },
+          {
+            "t": 14,
+            "n": 5,
+            "mean": -0.174
+          },
+          {
+            "t": 17,
+            "n": 5,
+            "mean": -0.2198
+          },
+          {
+            "t": 19,
+            "n": 6,
+            "mean": -0.6524
+          },
+          {
+            "t": 20,
+            "n": 5,
+            "mean": -0.449
+          },
+          {
+            "t": 21,
+            "n": 6,
+            "mean": -0.0165
+          },
+          {
+            "t": 27,
+            "n": 5,
+            "mean": -0.1134
+          }
+        ],
+        "france": [
+          {
+            "t": 0,
+            "n": 98,
+            "mean": 0.0261
+          }
+        ],
+        "spain": [
+          {
+            "t": 0,
+            "n": 2112,
+            "mean": 0.1983
+          },
+          {
+            "t": 1,
+            "n": 125,
+            "mean": 0.009
+          },
+          {
+            "t": 2,
+            "n": 61,
+            "mean": 0.0745
+          },
+          {
+            "t": 3,
+            "n": 27,
+            "mean": 0.0266
+          },
+          {
+            "t": 4,
+            "n": 20,
+            "mean": 0.0376
+          },
+          {
+            "t": 5,
+            "n": 9,
+            "mean": 0.0987
+          },
+          {
+            "t": 6,
+            "n": 12,
+            "mean": -0.0274
+          },
+          {
+            "t": 7,
+            "n": 6,
+            "mean": 0.1295
+          },
+          {
+            "t": 8,
+            "n": 9,
+            "mean": 0.2038
+          },
+          {
+            "t": 14,
+            "n": 6,
+            "mean": -0.147
+          },
+          {
+            "t": 17,
+            "n": 6,
+            "mean": -0.1178
+          },
+          {
+            "t": 21,
+            "n": 6,
+            "mean": -0.2716
+          }
+        ]
+      },
+      "by_hour": [
+        {
+          "t": 0,
+          "n": 1213,
+          "mean": 0.0129
+        },
+        {
+          "t": 1,
+          "n": 927,
+          "mean": -0.0008
+        },
+        {
+          "t": 2,
+          "n": 577,
+          "mean": 0.0124
+        },
+        {
+          "t": 3,
+          "n": 466,
+          "mean": -0.0987
+        },
+        {
+          "t": 4,
+          "n": 334,
+          "mean": -0.081
+        },
+        {
+          "t": 5,
+          "n": 231,
+          "mean": -0.0957
+        },
+        {
+          "t": 6,
+          "n": 174,
+          "mean": -0.1325
+        },
+        {
+          "t": 7,
+          "n": 110,
+          "mean": 0.0522
+        },
+        {
+          "t": 8,
+          "n": 104,
+          "mean": -0.1726
+        },
+        {
+          "t": 9,
+          "n": 60,
+          "mean": 0.0221
+        },
+        {
+          "t": 10,
+          "n": 52,
+          "mean": -0.1535
+        },
+        {
+          "t": 11,
+          "n": 54,
+          "mean": 0.246
+        },
+        {
+          "t": 12,
+          "n": 49,
+          "mean": -0.0285
+        },
+        {
+          "t": 13,
+          "n": 51,
+          "mean": -0.0079
+        },
+        {
+          "t": 14,
+          "n": 70,
+          "mean": -0.0804
+        },
+        {
+          "t": 15,
+          "n": 52,
+          "mean": -0.1299
+        },
+        {
+          "t": 16,
+          "n": 67,
+          "mean": -0.3392
+        },
+        {
+          "t": 17,
+          "n": 60,
+          "mean": -0.0533
+        },
+        {
+          "t": 18,
+          "n": 67,
+          "mean": -0.1961
+        },
+        {
+          "t": 19,
+          "n": 49,
+          "mean": 0.0413
+        },
+        {
+          "t": 20,
+          "n": 58,
+          "mean": -0.2371
+        },
+        {
+          "t": 21,
+          "n": 25,
+          "mean": -0.1283
+        },
+        {
+          "t": 22,
+          "n": 36,
+          "mean": -0.2314
+        },
+        {
+          "t": 23,
+          "n": 40,
+          "mean": -0.0554
+        },
+        {
+          "t": 24,
+          "n": 26,
+          "mean": -0.213
+        },
+        {
+          "t": 25,
+          "n": 26,
+          "mean": -0.0206
+        },
+        {
+          "t": 26,
+          "n": 40,
+          "mean": -0.1148
+        },
+        {
+          "t": 27,
+          "n": 25,
+          "mean": -0.135
+        },
+        {
+          "t": 28,
+          "n": 22,
+          "mean": -0.1602
+        },
+        {
+          "t": 29,
+          "n": 16,
+          "mean": 0.1121
+        },
+        {
+          "t": 30,
+          "n": 12,
+          "mean": -0.3163
+        },
+        {
+          "t": 31,
+          "n": 11,
+          "mean": -0.3574
+        },
+        {
+          "t": 32,
+          "n": 15,
+          "mean": -0.2452
+        },
+        {
+          "t": 33,
+          "n": 10,
+          "mean": -0.4444
+        },
+        {
+          "t": 34,
+          "n": 5,
+          "mean": -0.2107
+        },
+        {
+          "t": 36,
+          "n": 8,
+          "mean": 0.1744
+        },
+        {
+          "t": 37,
+          "n": 10,
+          "mean": -0.1218
+        },
+        {
+          "t": 38,
+          "n": 10,
+          "mean": -0.0862
+        },
+        {
+          "t": 40,
+          "n": 13,
+          "mean": 0.0104
+        },
+        {
+          "t": 41,
+          "n": 23,
+          "mean": -0.1325
+        },
+        {
+          "t": 42,
+          "n": 7,
+          "mean": -0.1074
+        },
+        {
+          "t": 43,
+          "n": 16,
+          "mean": -0.1402
+        },
+        {
+          "t": 45,
+          "n": 8,
+          "mean": 0.0536
+        },
+        {
+          "t": 46,
+          "n": 5,
+          "mean": -0.0251
+        },
+        {
+          "t": 47,
+          "n": 6,
+          "mean": -0.1514
+        }
+      ],
+      "by_hour_team": {
+        "argentina": [
+          {
+            "t": 0,
+            "n": 540,
+            "mean": -0.1982
+          },
+          {
+            "t": 1,
+            "n": 390,
+            "mean": -0.2398
+          },
+          {
+            "t": 2,
+            "n": 248,
+            "mean": -0.1884
+          },
+          {
+            "t": 3,
+            "n": 216,
+            "mean": -0.2621
+          },
+          {
+            "t": 4,
+            "n": 158,
+            "mean": -0.2838
+          },
+          {
+            "t": 5,
+            "n": 98,
+            "mean": -0.34
+          },
+          {
+            "t": 6,
+            "n": 80,
+            "mean": -0.3443
+          },
+          {
+            "t": 7,
+            "n": 45,
+            "mean": -0.2685
+          },
+          {
+            "t": 8,
+            "n": 45,
+            "mean": -0.4721
+          },
+          {
+            "t": 9,
+            "n": 24,
+            "mean": -0.1678
+          },
+          {
+            "t": 10,
+            "n": 25,
+            "mean": -0.4671
+          },
+          {
+            "t": 11,
+            "n": 14,
+            "mean": -0.5742
+          },
+          {
+            "t": 12,
+            "n": 23,
+            "mean": -0.1898
+          },
+          {
+            "t": 13,
+            "n": 22,
+            "mean": -0.1835
+          },
+          {
+            "t": 14,
+            "n": 26,
+            "mean": -0.3931
+          },
+          {
+            "t": 15,
+            "n": 16,
+            "mean": -0.3334
+          },
+          {
+            "t": 16,
+            "n": 30,
+            "mean": -0.5866
+          },
+          {
+            "t": 17,
+            "n": 22,
+            "mean": -0.2529
+          },
+          {
+            "t": 18,
+            "n": 29,
+            "mean": -0.4708
+          },
+          {
+            "t": 19,
+            "n": 24,
+            "mean": -0.0664
+          },
+          {
+            "t": 20,
+            "n": 19,
+            "mean": -0.5758
+          },
+          {
+            "t": 21,
+            "n": 15,
+            "mean": -0.3309
+          },
+          {
+            "t": 22,
+            "n": 11,
+            "mean": -0.7215
+          },
+          {
+            "t": 23,
+            "n": 16,
+            "mean": -0.261
+          },
+          {
+            "t": 24,
+            "n": 5,
+            "mean": -0.7604
+          },
+          {
+            "t": 25,
+            "n": 8,
+            "mean": -0.4294
+          },
+          {
+            "t": 26,
+            "n": 22,
+            "mean": -0.434
+          },
+          {
+            "t": 27,
+            "n": 9,
+            "mean": -0.2991
+          },
+          {
+            "t": 28,
+            "n": 7,
+            "mean": -0.7269
+          },
+          {
+            "t": 29,
+            "n": 10,
+            "mean": -0.1459
+          },
+          {
+            "t": 30,
+            "n": 6,
+            "mean": -0.6778
+          },
+          {
+            "t": 31,
+            "n": 7,
+            "mean": -0.5017
+          },
+          {
+            "t": 32,
+            "n": 7,
+            "mean": -0.0379
+          },
+          {
+            "t": 40,
+            "n": 8,
+            "mean": -0.3946
+          },
+          {
+            "t": 41,
+            "n": 7,
+            "mean": -0.2671
+          },
+          {
+            "t": 43,
+            "n": 8,
+            "mean": -0.331
+          }
+        ],
+        "france": [
+          {
+            "t": 0,
+            "n": 30,
+            "mean": 0.0008
+          },
+          {
+            "t": 1,
+            "n": 28,
+            "mean": 0.0278
+          },
+          {
+            "t": 2,
+            "n": 9,
+            "mean": 0.224
+          },
+          {
+            "t": 3,
+            "n": 8,
+            "mean": 0.098
+          },
+          {
+            "t": 4,
+            "n": 7,
+            "mean": 0.2786
+          }
+        ],
+        "spain": [
+          {
+            "t": 0,
+            "n": 575,
+            "mean": 0.2682
+          },
+          {
+            "t": 1,
+            "n": 446,
+            "mean": 0.209
+          },
+          {
+            "t": 2,
+            "n": 245,
+            "mean": 0.2443
+          },
+          {
+            "t": 3,
+            "n": 182,
+            "mean": 0.1263
+          },
+          {
+            "t": 4,
+            "n": 130,
+            "mean": 0.178
+          },
+          {
+            "t": 5,
+            "n": 104,
+            "mean": 0.1237
+          },
+          {
+            "t": 6,
+            "n": 51,
+            "mean": 0.0261
+          },
+          {
+            "t": 7,
+            "n": 53,
+            "mean": 0.2358
+          },
+          {
+            "t": 8,
+            "n": 33,
+            "mean": 0.0157
+          },
+          {
+            "t": 9,
+            "n": 34,
+            "mean": 0.2109
+          },
+          {
+            "t": 10,
+            "n": 14,
+            "mean": 0.1366
+          },
+          {
+            "t": 11,
+            "n": 16,
+            "mean": 0.4658
+          },
+          {
+            "t": 12,
+            "n": 17,
+            "mean": 0.1324
+          },
+          {
+            "t": 13,
+            "n": 17,
+            "mean": 0.2223
+          },
+          {
+            "t": 14,
+            "n": 20,
+            "mean": 0.1016
+          },
+          {
+            "t": 15,
+            "n": 24,
+            "mean": -0.0141
+          },
+          {
+            "t": 16,
+            "n": 20,
+            "mean": 0.1703
+          },
+          {
+            "t": 17,
+            "n": 21,
+            "mean": 0.0803
+          },
+          {
+            "t": 18,
+            "n": 22,
+            "mean": 0.1448
+          },
+          {
+            "t": 19,
+            "n": 20,
+            "mean": 0.4173
+          },
+          {
+            "t": 20,
+            "n": 17,
+            "mean": -0.2125
+          },
+          {
+            "t": 21,
+            "n": 13,
+            "mean": -0.1634
+          },
+          {
+            "t": 22,
+            "n": 16,
+            "mean": 0.1946
+          },
+          {
+            "t": 23,
+            "n": 22,
+            "mean": -0.004
+          },
+          {
+            "t": 24,
+            "n": 7,
+            "mean": 0.2796
+          },
+          {
+            "t": 25,
+            "n": 13,
+            "mean": 0.1689
+          },
+          {
+            "t": 26,
+            "n": 14,
+            "mean": -0.0344
+          },
+          {
+            "t": 27,
+            "n": 10,
+            "mean": -0.0791
+          },
+          {
+            "t": 28,
+            "n": 8,
+            "mean": -0.4361
+          },
+          {
+            "t": 29,
+            "n": 7,
+            "mean": 0.6062
+          },
+          {
+            "t": 31,
+            "n": 5,
+            "mean": -0.3977
+          },
+          {
+            "t": 32,
+            "n": 7,
+            "mean": -0.0872
+          },
+          {
+            "t": 33,
+            "n": 5,
+            "mean": -0.3993
+          },
+          {
+            "t": 38,
+            "n": 8,
+            "mean": -0.1386
+          },
+          {
+            "t": 41,
+            "n": 6,
+            "mean": -0.3289
+          },
+          {
+            "t": 43,
+            "n": 6,
+            "mean": -0.1251
+          }
+        ]
+      },
+      "unattributed": 1892
+    },
+    "fifa_arg_fra_2022": {
+      "video_id": "zhEWqfP6V_w",
+      "channel": "FIFA",
+      "title": "THE GREATEST FINAL EVER?! | Argentina v France | FIFA World Cup Qatar 2022 Highlights",
+      "published_at": "2022-12-19T18:45:01Z",
+      "match": "Argentina vs France",
+      "event": "2022 World Cup Final (Qatar)",
+      "n_scored": 5500,
+      "overall": {
+        "mean": 0.3336,
+        "pct_negative": 19.2,
+        "pct_positive": 62.6
+      },
+      "by_team": {
+        "argentina": {
+          "n": 2191,
+          "mean": 0.4214,
+          "median": 0.6932,
+          "pct_negative": 15.7,
+          "pct_positive": 70.3
+        },
+        "france": {
+          "n": 976,
+          "mean": 0.2061,
+          "median": 0.3555,
+          "pct_negative": 25.2,
+          "pct_positive": 54.0
+        },
+        "spain": {
+          "n": 16,
+          "mean": 0.1599,
+          "median": 0.1897,
+          "pct_negative": 31.2,
+          "pct_positive": 43.8
+        }
+      },
+      "by_topic": {
+        "refereeing": {
+          "n": 357,
+          "share": 6.5,
+          "mean": -0.2579,
+          "pct_negative": 56.3,
+          "n_argentina": 173,
+          "mean_argentina": -0.1946
+        },
+        "conduct": {
+          "n": 74,
+          "share": 1.3,
+          "mean": 0.3684,
+          "pct_negative": 20.3,
+          "n_argentina": 48,
+          "mean_argentina": 0.3946
+        },
+        "messi": {
+          "n": 1812,
+          "share": 32.9,
+          "mean": 0.5143,
+          "pct_negative": 12.1,
+          "n_argentina": 1291,
+          "mean_argentina": 0.4673
+        },
+        "tactics": {
+          "n": 44,
+          "share": 0.8,
+          "mean": -0.0616,
+          "pct_negative": 43.2,
+          "n_argentina": 29,
+          "mean_argentina": -0.1655
+        },
+        "crowd": {
+          "n": 141,
+          "share": 2.6,
+          "mean": 0.3168,
+          "pct_negative": 21.3,
+          "n_argentina": 98,
+          "mean_argentina": 0.3795
+        }
+      },
+      "by_day": [
+        {
+          "day": 0,
+          "n": 3235,
+          "mean": 0.3814
+        },
+        {
+          "day": 1,
+          "n": 590,
+          "mean": 0.2829
+        },
+        {
+          "day": 2,
+          "n": 267,
+          "mean": 0.262
+        },
+        {
+          "day": 3,
+          "n": 171,
+          "mean": 0.1778
+        },
+        {
+          "day": 4,
+          "n": 156,
+          "mean": 0.2455
+        },
+        {
+          "day": 5,
+          "n": 96,
+          "mean": 0.1627
+        },
+        {
+          "day": 6,
+          "n": 75,
+          "mean": 0.3017
+        },
+        {
+          "day": 7,
+          "n": 81,
+          "mean": 0.1698
+        },
+        {
+          "day": 8,
+          "n": 61,
+          "mean": 0.4141
+        },
+        {
+          "day": 9,
+          "n": 56,
+          "mean": 0.271
+        },
+        {
+          "day": 10,
+          "n": 38,
+          "mean": 0.2158
+        },
+        {
+          "day": 11,
+          "n": 37,
+          "mean": 0.3537
+        },
+        {
+          "day": 12,
+          "n": 23,
+          "mean": 0.2376
+        },
+        {
+          "day": 13,
+          "n": 35,
+          "mean": 0.2792
+        },
+        {
+          "day": 14,
+          "n": 24,
+          "mean": 0.3445
+        },
+        {
+          "day": 15,
+          "n": 30,
+          "mean": 0.2118
+        },
+        {
+          "day": 16,
+          "n": 29,
+          "mean": 0.3769
+        },
+        {
+          "day": 17,
+          "n": 22,
+          "mean": 0.3085
+        },
+        {
+          "day": 18,
+          "n": 32,
+          "mean": 0.1179
+        },
+        {
+          "day": 19,
+          "n": 26,
+          "mean": 0.3415
+        },
+        {
+          "day": 20,
+          "n": 20,
+          "mean": 0.2679
+        },
+        {
+          "day": 21,
+          "n": 26,
+          "mean": 0.257
+        },
+        {
+          "day": 22,
+          "n": 26,
+          "mean": 0.2418
+        },
+        {
+          "day": 23,
+          "n": 19,
+          "mean": 0.1415
+        },
+        {
+          "day": 24,
+          "n": 25,
+          "mean": 0.259
+        },
+        {
+          "day": 25,
+          "n": 24,
+          "mean": 0.2783
+        },
+        {
+          "day": 26,
+          "n": 18,
+          "mean": 0.4016
+        },
+        {
+          "day": 27,
+          "n": 10,
+          "mean": 0.342
+        },
+        {
+          "day": 28,
+          "n": 11,
+          "mean": 0.1802
+        },
+        {
+          "day": 29,
+          "n": 25,
+          "mean": 0.2483
+        },
+        {
+          "day": 30,
+          "n": 24,
+          "mean": 0.2854
+        },
+        {
+          "day": 31,
+          "n": 22,
+          "mean": 0.5241
+        },
+        {
+          "day": 32,
+          "n": 27,
+          "mean": 0.3784
+        },
+        {
+          "day": 33,
+          "n": 24,
+          "mean": 0.0731
+        },
+        {
+          "day": 34,
+          "n": 16,
+          "mean": 0.2742
+        },
+        {
+          "day": 35,
+          "n": 18,
+          "mean": 0.2559
+        },
+        {
+          "day": 36,
+          "n": 15,
+          "mean": 0.2136
+        },
+        {
+          "day": 37,
+          "n": 14,
+          "mean": 0.5475
+        },
+        {
+          "day": 38,
+          "n": 16,
+          "mean": 0.3663
+        },
+        {
+          "day": 39,
+          "n": 13,
+          "mean": 0.337
+        },
+        {
+          "day": 40,
+          "n": 12,
+          "mean": 0.328
+        },
+        {
+          "day": 41,
+          "n": 11,
+          "mean": 0.3905
+        }
+      ],
+      "by_day_team": {
+        "argentina": [
+          {
+            "t": 0,
+            "n": 1283,
+            "mean": 0.4771
+          },
+          {
+            "t": 1,
+            "n": 233,
+            "mean": 0.4041
+          },
+          {
+            "t": 2,
+            "n": 105,
+            "mean": 0.3266
+          },
+          {
+            "t": 3,
+            "n": 75,
+            "mean": 0.3243
+          },
+          {
+            "t": 4,
+            "n": 63,
+            "mean": 0.2899
+          },
+          {
+            "t": 5,
+            "n": 38,
+            "mean": 0.2899
+          },
+          {
+            "t": 6,
+            "n": 27,
+            "mean": 0.414
+          },
+          {
+            "t": 7,
+            "n": 37,
+            "mean": 0.2937
+          },
+          {
+            "t": 8,
+            "n": 32,
+            "mean": 0.4037
+          },
+          {
+            "t": 9,
+            "n": 18,
+            "mean": 0.3674
+          },
+          {
+            "t": 10,
+            "n": 11,
+            "mean": 0.0049
+          },
+          {
+            "t": 11,
+            "n": 13,
+            "mean": 0.3473
+          },
+          {
+            "t": 12,
+            "n": 7,
+            "mean": 0.0416
+          },
+          {
+            "t": 13,
+            "n": 19,
+            "mean": 0.4238
+          },
+          {
+            "t": 14,
+            "n": 10,
+            "mean": 0.2332
+          },
+          {
+            "t": 15,
+            "n": 11,
+            "mean": 0.5149
+          },
+          {
+            "t": 16,
+            "n": 13,
+            "mean": 0.3949
+          },
+          {
+            "t": 17,
+            "n": 6,
+            "mean": 0.3319
+          },
+          {
+            "t": 18,
+            "n": 14,
+            "mean": 0.091
+          },
+          {
+            "t": 19,
+            "n": 8,
+            "mean": 0.3979
+          },
+          {
+            "t": 20,
+            "n": 8,
+            "mean": 0.3336
+          },
+          {
+            "t": 21,
+            "n": 7,
+            "mean": 0.2843
+          },
+          {
+            "t": 22,
+            "n": 11,
+            "mean": 0.236
+          },
+          {
+            "t": 23,
+            "n": 8,
+            "mean": 0.0327
+          },
+          {
+            "t": 24,
+            "n": 10,
+            "mean": 0.4227
+          },
+          {
+            "t": 25,
+            "n": 10,
+            "mean": 0.2029
+          },
+          {
+            "t": 26,
+            "n": 7,
+            "mean": 0.8125
+          },
+          {
+            "t": 29,
+            "n": 11,
+            "mean": 0.3138
+          },
+          {
+            "t": 30,
+            "n": 9,
+            "mean": 0.1136
+          },
+          {
+            "t": 31,
+            "n": 8,
+            "mean": 0.6775
+          },
+          {
+            "t": 32,
+            "n": 12,
+            "mean": 0.386
+          },
+          {
+            "t": 33,
+            "n": 10,
+            "mean": 0.1221
+          },
+          {
+            "t": 34,
+            "n": 9,
+            "mean": 0.1651
+          },
+          {
+            "t": 35,
+            "n": 9,
+            "mean": 0.3093
+          },
+          {
+            "t": 36,
+            "n": 6,
+            "mean": 0.1501
+          },
+          {
+            "t": 38,
+            "n": 7,
+            "mean": 0.4241
+          },
+          {
+            "t": 39,
+            "n": 9,
+            "mean": 0.2021
+          }
+        ],
+        "france": [
+          {
+            "t": 0,
+            "n": 549,
+            "mean": 0.2591
+          },
+          {
+            "t": 1,
+            "n": 117,
+            "mean": 0.1875
+          },
+          {
+            "t": 2,
+            "n": 46,
+            "mean": 0.1138
+          },
+          {
+            "t": 3,
+            "n": 40,
+            "mean": -0.0793
+          },
+          {
+            "t": 4,
+            "n": 42,
+            "mean": 0.0151
+          },
+          {
+            "t": 5,
+            "n": 16,
+            "mean": -0.0773
+          },
+          {
+            "t": 6,
+            "n": 11,
+            "mean": -0.0951
+          },
+          {
+            "t": 7,
+            "n": 10,
+            "mean": -0.0964
+          },
+          {
+            "t": 8,
+            "n": 23,
+            "mean": 0.2841
+          },
+          {
+            "t": 9,
+            "n": 7,
+            "mean": -0.1231
+          },
+          {
+            "t": 10,
+            "n": 7,
+            "mean": 0.3033
+          },
+          {
+            "t": 13,
+            "n": 7,
+            "mean": 0.3485
+          },
+          {
+            "t": 14,
+            "n": 6,
+            "mean": -0.1026
+          },
+          {
+            "t": 15,
+            "n": 7,
+            "mean": 0.5506
+          },
+          {
+            "t": 18,
+            "n": 7,
+            "mean": 0.0161
+          },
+          {
+            "t": 20,
+            "n": 6,
+            "mean": -0.0038
+          },
+          {
+            "t": 25,
+            "n": 5,
+            "mean": 0.3098
+          }
+        ],
+        "spain": [
+          {
+            "t": 0,
+            "n": 8,
+            "mean": 0.3739
+          }
+        ]
+      },
+      "by_hour": [
+        {
+          "t": 0,
+          "n": 766,
+          "mean": 0.4266
+        },
+        {
+          "t": 1,
+          "n": 329,
+          "mean": 0.3499
+        },
+        {
+          "t": 2,
+          "n": 218,
+          "mean": 0.3957
+        },
+        {
+          "t": 3,
+          "n": 172,
+          "mean": 0.2941
+        },
+        {
+          "t": 4,
+          "n": 130,
+          "mean": 0.4594
+        },
+        {
+          "t": 5,
+          "n": 119,
+          "mean": 0.4223
+        },
+        {
+          "t": 6,
+          "n": 112,
+          "mean": 0.356
+        },
+        {
+          "t": 7,
+          "n": 91,
+          "mean": 0.3073
+        },
+        {
+          "t": 8,
+          "n": 102,
+          "mean": 0.4171
+        },
+        {
+          "t": 9,
+          "n": 119,
+          "mean": 0.3122
+        },
+        {
+          "t": 10,
+          "n": 101,
+          "mean": 0.4459
+        },
+        {
+          "t": 11,
+          "n": 103,
+          "mean": 0.3766
+        },
+        {
+          "t": 12,
+          "n": 102,
+          "mean": 0.4657
+        },
+        {
+          "t": 13,
+          "n": 101,
+          "mean": 0.3388
+        },
+        {
+          "t": 14,
+          "n": 89,
+          "mean": 0.3413
+        },
+        {
+          "t": 15,
+          "n": 75,
+          "mean": 0.3574
+        },
+        {
+          "t": 16,
+          "n": 80,
+          "mean": 0.3864
+        },
+        {
+          "t": 17,
+          "n": 68,
+          "mean": 0.3322
+        },
+        {
+          "t": 18,
+          "n": 76,
+          "mean": 0.4149
+        },
+        {
+          "t": 19,
+          "n": 64,
+          "mean": 0.2017
+        },
+        {
+          "t": 20,
+          "n": 69,
+          "mean": 0.3795
+        },
+        {
+          "t": 21,
+          "n": 51,
+          "mean": 0.3365
+        },
+        {
+          "t": 22,
+          "n": 51,
+          "mean": 0.3383
+        },
+        {
+          "t": 23,
+          "n": 47,
+          "mean": 0.3483
+        },
+        {
+          "t": 24,
+          "n": 36,
+          "mean": 0.2225
+        },
+        {
+          "t": 25,
+          "n": 23,
+          "mean": 0.1842
+        },
+        {
+          "t": 26,
+          "n": 28,
+          "mean": 0.2269
+        },
+        {
+          "t": 27,
+          "n": 30,
+          "mean": 0.3029
+        },
+        {
+          "t": 28,
+          "n": 26,
+          "mean": 0.0951
+        },
+        {
+          "t": 29,
+          "n": 29,
+          "mean": 0.0623
+        },
+        {
+          "t": 30,
+          "n": 21,
+          "mean": 0.2002
+        },
+        {
+          "t": 31,
+          "n": 12,
+          "mean": 0.0417
+        },
+        {
+          "t": 32,
+          "n": 15,
+          "mean": 0.3006
+        },
+        {
+          "t": 33,
+          "n": 13,
+          "mean": 0.4972
+        },
+        {
+          "t": 34,
+          "n": 19,
+          "mean": 0.3361
+        },
+        {
+          "t": 35,
+          "n": 16,
+          "mean": 0.3531
+        },
+        {
+          "t": 36,
+          "n": 27,
+          "mean": 0.521
+        },
+        {
+          "t": 37,
+          "n": 33,
+          "mean": 0.3006
+        },
+        {
+          "t": 38,
+          "n": 30,
+          "mean": 0.4534
+        },
+        {
+          "t": 39,
+          "n": 28,
+          "mean": 0.1871
+        },
+        {
+          "t": 40,
+          "n": 26,
+          "mean": 0.339
+        },
+        {
+          "t": 41,
+          "n": 33,
+          "mean": 0.4597
+        },
+        {
+          "t": 42,
+          "n": 32,
+          "mean": 0.2857
+        },
+        {
+          "t": 43,
+          "n": 29,
+          "mean": 0.2984
+        },
+        {
+          "t": 44,
+          "n": 21,
+          "mean": 0.3194
+        },
+        {
+          "t": 45,
+          "n": 26,
+          "mean": 0.1711
+        },
+        {
+          "t": 46,
+          "n": 16,
+          "mean": 0.2392
+        },
+        {
+          "t": 47,
+          "n": 21,
+          "mean": 0.3627
+        }
+      ],
+      "by_hour_team": {
+        "argentina": [
+          {
+            "t": 0,
+            "n": 299,
+            "mean": 0.5822
+          },
+          {
+            "t": 1,
+            "n": 131,
+            "mean": 0.4437
+          },
+          {
+            "t": 2,
+            "n": 85,
+            "mean": 0.4297
+          },
+          {
+            "t": 3,
+            "n": 73,
+            "mean": 0.3468
+          },
+          {
+            "t": 4,
+            "n": 49,
+            "mean": 0.5545
+          },
+          {
+            "t": 5,
+            "n": 47,
+            "mean": 0.518
+          },
+          {
+            "t": 6,
+            "n": 46,
+            "mean": 0.3095
+          },
+          {
+            "t": 7,
+            "n": 41,
+            "mean": 0.4307
+          },
+          {
+            "t": 8,
+            "n": 47,
+            "mean": 0.5342
+          },
+          {
+            "t": 9,
+            "n": 47,
+            "mean": 0.3518
+          },
+          {
+            "t": 10,
+            "n": 37,
+            "mean": 0.4973
+          },
+          {
+            "t": 11,
+            "n": 32,
+            "mean": 0.5461
+          },
+          {
+            "t": 12,
+            "n": 47,
+            "mean": 0.5439
+          },
+          {
+            "t": 13,
+            "n": 44,
+            "mean": 0.5067
+          },
+          {
+            "t": 14,
+            "n": 33,
+            "mean": 0.4343
+          },
+          {
+            "t": 15,
+            "n": 27,
+            "mean": 0.3821
+          },
+          {
+            "t": 16,
+            "n": 33,
+            "mean": 0.4725
+          },
+          {
+            "t": 17,
+            "n": 27,
+            "mean": 0.4563
+          },
+          {
+            "t": 18,
+            "n": 29,
+            "mean": 0.4492
+          },
+          {
+            "t": 19,
+            "n": 21,
+            "mean": 0.3668
+          },
+          {
+            "t": 20,
+            "n": 28,
+            "mean": 0.489
+          },
+          {
+            "t": 21,
+            "n": 24,
+            "mean": 0.3456
+          },
+          {
+            "t": 22,
+            "n": 15,
+            "mean": 0.4292
+          },
+          {
+            "t": 23,
+            "n": 21,
+            "mean": 0.3596
+          },
+          {
+            "t": 24,
+            "n": 17,
+            "mean": 0.3229
+          },
+          {
+            "t": 25,
+            "n": 8,
+            "mean": 0.3932
+          },
+          {
+            "t": 26,
+            "n": 9,
+            "mean": 0.3797
+          },
+          {
+            "t": 27,
+            "n": 14,
+            "mean": 0.5056
+          },
+          {
+            "t": 28,
+            "n": 8,
+            "mean": 0.2601
+          },
+          {
+            "t": 29,
+            "n": 13,
+            "mean": -0.0338
+          },
+          {
+            "t": 30,
+            "n": 9,
+            "mean": 0.4036
+          },
+          {
+            "t": 31,
+            "n": 6,
+            "mean": 0.1846
+          },
+          {
+            "t": 32,
+            "n": 6,
+            "mean": 0.3307
+          },
+          {
+            "t": 33,
+            "n": 9,
+            "mean": 0.4254
+          },
+          {
+            "t": 34,
+            "n": 5,
+            "mean": 0.8381
+          },
+          {
+            "t": 35,
+            "n": 5,
+            "mean": 0.3037
+          },
+          {
+            "t": 36,
+            "n": 9,
+            "mean": 0.6774
+          },
+          {
+            "t": 37,
+            "n": 15,
+            "mean": 0.4727
+          },
+          {
+            "t": 38,
+            "n": 11,
+            "mean": 0.7214
+          },
+          {
+            "t": 39,
+            "n": 10,
+            "mean": 0.2499
+          },
+          {
+            "t": 40,
+            "n": 8,
+            "mean": 0.6406
+          },
+          {
+            "t": 41,
+            "n": 17,
+            "mean": 0.5091
+          },
+          {
+            "t": 42,
+            "n": 13,
+            "mean": 0.3387
+          },
+          {
+            "t": 43,
+            "n": 10,
+            "mean": 0.3202
+          },
+          {
+            "t": 44,
+            "n": 6,
+            "mean": 0.4523
+          },
+          {
+            "t": 45,
+            "n": 8,
+            "mean": 0.3431
+          },
+          {
+            "t": 46,
+            "n": 8,
+            "mean": 0.2023
+          },
+          {
+            "t": 47,
+            "n": 9,
+            "mean": 0.5592
+          }
+        ],
+        "france": [
+          {
+            "t": 0,
+            "n": 110,
+            "mean": 0.3389
+          },
+          {
+            "t": 1,
+            "n": 55,
+            "mean": 0.2643
+          },
+          {
+            "t": 2,
+            "n": 42,
+            "mean": 0.4108
+          },
+          {
+            "t": 3,
+            "n": 35,
+            "mean": 0.1437
+          },
+          {
+            "t": 4,
+            "n": 15,
+            "mean": 0.3838
+          },
+          {
+            "t": 5,
+            "n": 19,
+            "mean": 0.5531
+          },
+          {
+            "t": 6,
+            "n": 31,
+            "mean": 0.1531
+          },
+          {
+            "t": 7,
+            "n": 31,
+            "mean": 0.1998
+          },
+          {
+            "t": 8,
+            "n": 19,
+            "mean": 0.3965
+          },
+          {
+            "t": 9,
+            "n": 23,
+            "mean": 0.2006
+          },
+          {
+            "t": 10,
+            "n": 11,
+            "mean": 0.2221
+          },
+          {
+            "t": 11,
+            "n": 13,
+            "mean": 0.0389
+          },
+          {
+            "t": 12,
+            "n": 15,
+            "mean": 0.3638
+          },
+          {
+            "t": 13,
+            "n": 23,
+            "mean": 0.136
+          },
+          {
+            "t": 14,
+            "n": 16,
+            "mean": 0.0947
+          },
+          {
+            "t": 15,
+            "n": 9,
+            "mean": 0.5829
+          },
+          {
+            "t": 16,
+            "n": 17,
+            "mean": 0.3151
+          },
+          {
+            "t": 17,
+            "n": 12,
+            "mean": 0.1022
+          },
+          {
+            "t": 18,
+            "n": 13,
+            "mean": 0.1945
+          },
+          {
+            "t": 19,
+            "n": 11,
+            "mean": -0.1638
+          },
+          {
+            "t": 20,
+            "n": 6,
+            "mean": 0.2761
+          },
+          {
+            "t": 21,
+            "n": 8,
+            "mean": 0.0318
+          },
+          {
+            "t": 22,
+            "n": 6,
+            "mean": 0.1664
+          },
+          {
+            "t": 23,
+            "n": 9,
+            "mean": 0.0287
+          },
+          {
+            "t": 24,
+            "n": 5,
+            "mean": 0.0206
+          },
+          {
+            "t": 26,
+            "n": 6,
+            "mean": 0.0477
+          },
+          {
+            "t": 27,
+            "n": 5,
+            "mean": 0.3252
+          },
+          {
+            "t": 29,
+            "n": 8,
+            "mean": 0.0856
+          },
+          {
+            "t": 30,
+            "n": 5,
+            "mean": -0.1475
+          },
+          {
+            "t": 36,
+            "n": 5,
+            "mean": 0.3113
+          },
+          {
+            "t": 37,
+            "n": 6,
+            "mean": -0.1844
+          },
+          {
+            "t": 39,
+            "n": 10,
+            "mean": 0.2823
+          },
+          {
+            "t": 40,
+            "n": 5,
+            "mean": 0.476
+          },
+          {
+            "t": 41,
+            "n": 14,
+            "mean": 0.4991
+          },
+          {
+            "t": 42,
+            "n": 9,
+            "mean": -0.0321
+          },
+          {
+            "t": 43,
+            "n": 6,
+            "mean": -0.0142
+          }
+        ],
+        "spain": []
+      },
+      "unattributed": 2883
+    },
+    "fifa_arg_spa_2026": {
+      "video_id": "6HaHNYjnghE",
+      "channel": "FIFA",
+      "title": "Highlights | Spain 1-0 Argentina | FIFA World Cup 2026™ FINAL",
+      "published_at": "2026-07-20T00:01:18Z",
+      "match": "Spain vs Argentina",
+      "event": "2026 World Cup Final",
+      "n_scored": 8737,
+      "overall": {
+        "mean": 0.1019,
+        "pct_negative": 30.5,
+        "pct_positive": 45.6
+      },
+      "by_team": {
+        "argentina": {
+          "n": 2758,
+          "mean": -0.1657,
+          "median": -0.1873,
+          "pct_negative": 47.0,
+          "pct_positive": 27.7
+        },
+        "france": {
+          "n": 92,
+          "mean": 0.0104,
+          "median": 0.0452,
+          "pct_negative": 32.6,
+          "pct_positive": 38.0
+        },
+        "spain": {
+          "n": 3373,
+          "mean": 0.3057,
+          "median": 0.5283,
+          "pct_negative": 19.6,
+          "pct_positive": 61.0
+        }
+      },
+      "by_topic": {
+        "refereeing": {
+          "n": 373,
+          "share": 4.3,
+          "mean": -0.4449,
+          "pct_negative": 68.9,
+          "n_argentina": 214,
+          "mean_argentina": -0.4568
+        },
+        "conduct": {
+          "n": 170,
+          "share": 1.9,
+          "mean": 0.2304,
+          "pct_negative": 24.1,
+          "n_argentina": 95,
+          "mean_argentina": 0.049
+        },
+        "messi": {
+          "n": 864,
+          "share": 9.9,
+          "mean": -0.1125,
+          "pct_negative": 45.9,
+          "n_argentina": 765,
+          "mean_argentina": -0.165
+        },
+        "tactics": {
+          "n": 104,
+          "share": 1.2,
+          "mean": -0.1218,
+          "pct_negative": 47.1,
+          "n_argentina": 67,
+          "mean_argentina": -0.2135
+        },
+        "crowd": {
+          "n": 231,
+          "share": 2.6,
+          "mean": -0.0007,
+          "pct_negative": 41.6,
+          "n_argentina": 121,
+          "mean_argentina": -0.1767
+        }
+      },
+      "by_day": [
+        {
+          "day": 0,
+          "n": 7124,
+          "mean": 0.1116
+        },
+        {
+          "day": 1,
+          "n": 403,
+          "mean": 0.1157
+        },
+        {
+          "day": 2,
+          "n": 193,
+          "mean": 0.143
+        },
+        {
+          "day": 3,
+          "n": 144,
+          "mean": 0.0035
+        },
+        {
+          "day": 4,
+          "n": 111,
+          "mean": -0.0227
+        },
+        {
+          "day": 5,
+          "n": 107,
+          "mean": 0.1033
+        },
+        {
+          "day": 6,
+          "n": 62,
+          "mean": 0.0037
+        },
+        {
+          "day": 7,
+          "n": 47,
+          "mean": -0.0161
+        },
+        {
+          "day": 8,
+          "n": 27,
+          "mean": 0.2665
+        },
+        {
+          "day": 9,
+          "n": 22,
+          "mean": 0.0553
+        },
+        {
+          "day": 10,
+          "n": 32,
+          "mean": 0.1899
+        },
+        {
+          "day": 11,
+          "n": 24,
+          "mean": 0.0221
+        },
+        {
+          "day": 12,
+          "n": 30,
+          "mean": 0.0299
+        },
+        {
+          "day": 13,
+          "n": 21,
+          "mean": -0.0383
+        },
+        {
+          "day": 14,
+          "n": 22,
+          "mean": 0.1968
+        },
+        {
+          "day": 15,
+          "n": 17,
+          "mean": -0.2153
+        },
+        {
+          "day": 16,
+          "n": 12,
+          "mean": -0.1627
+        },
+        {
+          "day": 17,
+          "n": 14,
+          "mean": 0.0752
+        },
+        {
+          "day": 18,
+          "n": 17,
+          "mean": 0.0299
+        },
+        {
+          "day": 19,
+          "n": 16,
+          "mean": 0.0959
+        },
+        {
+          "day": 20,
+          "n": 17,
+          "mean": 0.0525
+        },
+        {
+          "day": 21,
+          "n": 22,
+          "mean": -0.1128
+        },
+        {
+          "day": 22,
+          "n": 19,
+          "mean": 0.0008
+        },
+        {
+          "day": 23,
+          "n": 20,
+          "mean": 0.0197
+        },
+        {
+          "day": 24,
+          "n": 8,
+          "mean": 0.0326
+        },
+        {
+          "day": 25,
+          "n": 19,
+          "mean": 0.0239
+        },
+        {
+          "day": 26,
+          "n": 24,
+          "mean": 0.0863
+        },
+        {
+          "day": 27,
+          "n": 16,
+          "mean": 0.1242
+        },
+        {
+          "day": 28,
+          "n": 17,
+          "mean": 0.0443
+        },
+        {
+          "day": 29,
+          "n": 14,
+          "mean": 0.129
+        },
+        {
+          "day": 30,
+          "n": 15,
+          "mean": -0.0435
+        },
+        {
+          "day": 31,
+          "n": 8,
+          "mean": -0.0357
+        },
+        {
+          "day": 32,
+          "n": 10,
+          "mean": -0.2578
+        },
+        {
+          "day": 33,
+          "n": 10,
+          "mean": -0.2074
+        },
+        {
+          "day": 34,
+          "n": 7,
+          "mean": 0.1564
+        },
+        {
+          "day": 35,
+          "n": 9,
+          "mean": 0.1292
+        },
+        {
+          "day": 36,
+          "n": 9,
+          "mean": -0.0262
+        },
+        {
+          "day": 37,
+          "n": 9,
+          "mean": -0.2969
+        },
+        {
+          "day": 38,
+          "n": 4,
+          "mean": -0.292
+        },
+        {
+          "day": 39,
+          "n": 9,
+          "mean": -0.2286
+        },
+        {
+          "day": 40,
+          "n": 13,
+          "mean": 0.0962
+        },
+        {
+          "day": 41,
+          "n": 13,
+          "mean": -0.1818
+        }
+      ],
+      "by_day_team": {
+        "argentina": [
+          {
+            "t": 0,
+            "n": 2247,
+            "mean": -0.1747
+          },
+          {
+            "t": 1,
+            "n": 133,
+            "mean": -0.1421
+          },
+          {
+            "t": 2,
+            "n": 53,
+            "mean": -0.0491
+          },
+          {
+            "t": 3,
+            "n": 59,
+            "mean": -0.051
+          },
+          {
+            "t": 4,
+            "n": 40,
+            "mean": -0.0558
+          },
+          {
+            "t": 5,
+            "n": 32,
+            "mean": -0.2314
+          },
+          {
+            "t": 6,
+            "n": 17,
+            "mean": -0.1273
+          },
+          {
+            "t": 7,
+            "n": 12,
+            "mean": -0.2378
+          },
+          {
+            "t": 8,
+            "n": 6,
+            "mean": 0.1281
+          },
+          {
+            "t": 9,
+            "n": 5,
+            "mean": -0.1523
+          },
+          {
+            "t": 10,
+            "n": 6,
+            "mean": -0.1765
+          },
+          {
+            "t": 11,
+            "n": 7,
+            "mean": -0.3263
+          },
+          {
+            "t": 12,
+            "n": 11,
+            "mean": -0.1378
+          },
+          {
+            "t": 13,
+            "n": 9,
+            "mean": -0.1211
+          },
+          {
+            "t": 14,
+            "n": 6,
+            "mean": -0.0612
+          },
+          {
+            "t": 15,
+            "n": 7,
+            "mean": -0.4456
+          },
+          {
+            "t": 16,
+            "n": 5,
+            "mean": -0.3246
+          },
+          {
+            "t": 17,
+            "n": 5,
+            "mean": -0.3345
+          },
+          {
+            "t": 18,
+            "n": 5,
+            "mean": -0.1
+          },
+          {
+            "t": 21,
+            "n": 9,
+            "mean": 0.055
+          },
+          {
+            "t": 22,
+            "n": 6,
+            "mean": -0.0208
+          },
+          {
+            "t": 23,
+            "n": 8,
+            "mean": -0.2325
+          },
+          {
+            "t": 25,
+            "n": 7,
+            "mean": -0.2029
+          },
+          {
+            "t": 26,
+            "n": 9,
+            "mean": -0.128
+          },
+          {
+            "t": 33,
+            "n": 5,
+            "mean": -0.0863
+          },
+          {
+            "t": 37,
+            "n": 5,
+            "mean": -0.1161
+          },
+          {
+            "t": 41,
+            "n": 6,
+            "mean": -0.2209
+          }
+        ],
+        "france": [
+          {
+            "t": 0,
+            "n": 76,
+            "mean": 0.0261
+          },
+          {
+            "t": 1,
+            "n": 5,
+            "mean": 0.0625
+          }
+        ],
+        "spain": [
+          {
+            "t": 0,
+            "n": 2873,
+            "mean": 0.3177
+          },
+          {
+            "t": 1,
+            "n": 149,
+            "mean": 0.32
+          },
+          {
+            "t": 2,
+            "n": 63,
+            "mean": 0.3757
+          },
+          {
+            "t": 3,
+            "n": 35,
+            "mean": 0.0635
+          },
+          {
+            "t": 4,
+            "n": 26,
+            "mean": 0.0997
+          },
+          {
+            "t": 5,
+            "n": 37,
+            "mean": 0.5043
+          },
+          {
+            "t": 6,
+            "n": 10,
+            "mean": 0.2952
+          },
+          {
+            "t": 7,
+            "n": 16,
+            "mean": -0.0484
+          },
+          {
+            "t": 8,
+            "n": 8,
+            "mean": 0.4695
+          },
+          {
+            "t": 9,
+            "n": 6,
+            "mean": 0.1703
+          },
+          {
+            "t": 10,
+            "n": 12,
+            "mean": 0.394
+          },
+          {
+            "t": 11,
+            "n": 7,
+            "mean": 0.4415
+          },
+          {
+            "t": 12,
+            "n": 11,
+            "mean": -0.0614
+          },
+          {
+            "t": 14,
+            "n": 9,
+            "mean": 0.2529
+          },
+          {
+            "t": 15,
+            "n": 7,
+            "mean": -0.1713
+          },
+          {
+            "t": 17,
+            "n": 7,
+            "mean": 0.1208
+          },
+          {
+            "t": 18,
+            "n": 7,
+            "mean": 0.333
+          },
+          {
+            "t": 20,
+            "n": 5,
+            "mean": 0.58
+          },
+          {
+            "t": 21,
+            "n": 7,
+            "mean": -0.0911
+          },
+          {
+            "t": 22,
+            "n": 8,
+            "mean": 0.1057
+          },
+          {
+            "t": 25,
+            "n": 7,
+            "mean": 0.1286
+          },
+          {
+            "t": 26,
+            "n": 11,
+            "mean": 0.1423
+          }
+        ]
+      },
+      "by_hour": [
+        {
+          "t": 0,
+          "n": 942,
+          "mean": 0.1327
+        },
+        {
+          "t": 1,
+          "n": 756,
+          "mean": 0.1599
+        },
+        {
+          "t": 2,
+          "n": 685,
+          "mean": 0.1363
+        },
+        {
+          "t": 3,
+          "n": 726,
+          "mean": 0.0753
+        },
+        {
+          "t": 4,
+          "n": 751,
+          "mean": 0.1359
+        },
+        {
+          "t": 5,
+          "n": 608,
+          "mean": 0.0764
+        },
+        {
+          "t": 6,
+          "n": 513,
+          "mean": 0.0215
+        },
+        {
+          "t": 7,
+          "n": 386,
+          "mean": 0.0248
+        },
+        {
+          "t": 8,
+          "n": 284,
+          "mean": 0.0741
+        },
+        {
+          "t": 9,
+          "n": 183,
+          "mean": 0.1104
+        },
+        {
+          "t": 10,
+          "n": 208,
+          "mean": 0.1031
+        },
+        {
+          "t": 11,
+          "n": 174,
+          "mean": 0.1544
+        },
+        {
+          "t": 12,
+          "n": 158,
+          "mean": 0.2635
+        },
+        {
+          "t": 13,
+          "n": 135,
+          "mean": 0.1178
+        },
+        {
+          "t": 14,
+          "n": 124,
+          "mean": 0.2104
+        },
+        {
+          "t": 15,
+          "n": 119,
+          "mean": 0.0409
+        },
+        {
+          "t": 16,
+          "n": 95,
+          "mean": 0.1189
+        },
+        {
+          "t": 17,
+          "n": 75,
+          "mean": 0.2153
+        },
+        {
+          "t": 18,
+          "n": 47,
+          "mean": 0.1334
+        },
+        {
+          "t": 19,
+          "n": 38,
+          "mean": 0.1421
+        },
+        {
+          "t": 20,
+          "n": 37,
+          "mean": 0.1025
+        },
+        {
+          "t": 21,
+          "n": 28,
+          "mean": 0.3097
+        },
+        {
+          "t": 22,
+          "n": 26,
+          "mean": 0.0281
+        },
+        {
+          "t": 23,
+          "n": 26,
+          "mean": 0.0675
+        },
+        {
+          "t": 24,
+          "n": 15,
+          "mean": 0.175
+        },
+        {
+          "t": 25,
+          "n": 10,
+          "mean": 0.2557
+        },
+        {
+          "t": 26,
+          "n": 23,
+          "mean": 0.2843
+        },
+        {
+          "t": 27,
+          "n": 23,
+          "mean": 0.1843
+        },
+        {
+          "t": 28,
+          "n": 21,
+          "mean": -0.0295
+        },
+        {
+          "t": 29,
+          "n": 17,
+          "mean": -0.238
+        },
+        {
+          "t": 30,
+          "n": 22,
+          "mean": 0.1697
+        },
+        {
+          "t": 31,
+          "n": 22,
+          "mean": 0.0666
+        },
+        {
+          "t": 32,
+          "n": 16,
+          "mean": -0.1664
+        },
+        {
+          "t": 33,
+          "n": 22,
+          "mean": 0.068
+        },
+        {
+          "t": 34,
+          "n": 20,
+          "mean": 0.153
+        },
+        {
+          "t": 35,
+          "n": 23,
+          "mean": 0.1982
+        },
+        {
+          "t": 36,
+          "n": 17,
+          "mean": -0.0343
+        },
+        {
+          "t": 37,
+          "n": 13,
+          "mean": -0.0689
+        },
+        {
+          "t": 38,
+          "n": 24,
+          "mean": 0.4878
+        },
+        {
+          "t": 39,
+          "n": 16,
+          "mean": 0.1515
+        },
+        {
+          "t": 40,
+          "n": 20,
+          "mean": 0.2656
+        },
+        {
+          "t": 41,
+          "n": 20,
+          "mean": 0.1043
+        },
+        {
+          "t": 42,
+          "n": 18,
+          "mean": -0.0197
+        },
+        {
+          "t": 43,
+          "n": 8,
+          "mean": 0.1893
+        },
+        {
+          "t": 44,
+          "n": 7,
+          "mean": 0.0332
+        },
+        {
+          "t": 45,
+          "n": 10,
+          "mean": -0.0394
+        },
+        {
+          "t": 46,
+          "n": 7,
+          "mean": 0.5174
+        },
+        {
+          "t": 47,
+          "n": 9,
+          "mean": -0.109
+        }
+      ],
+      "by_hour_team": {
+        "argentina": [
+          {
+            "t": 0,
+            "n": 257,
+            "mean": -0.1203
+          },
+          {
+            "t": 1,
+            "n": 218,
+            "mean": -0.1713
+          },
+          {
+            "t": 2,
+            "n": 195,
+            "mean": -0.1202
+          },
+          {
+            "t": 3,
+            "n": 258,
+            "mean": -0.1525
+          },
+          {
+            "t": 4,
+            "n": 242,
+            "mean": -0.1295
+          },
+          {
+            "t": 5,
+            "n": 204,
+            "mean": -0.2143
+          },
+          {
+            "t": 6,
+            "n": 160,
+            "mean": -0.2111
+          },
+          {
+            "t": 7,
+            "n": 146,
+            "mean": -0.2415
+          },
+          {
+            "t": 8,
+            "n": 96,
+            "mean": -0.2483
+          },
+          {
+            "t": 9,
+            "n": 63,
+            "mean": -0.2646
+          },
+          {
+            "t": 10,
+            "n": 74,
+            "mean": -0.1868
+          },
+          {
+            "t": 11,
+            "n": 54,
+            "mean": -0.2936
+          },
+          {
+            "t": 12,
+            "n": 43,
+            "mean": -0.118
+          },
+          {
+            "t": 13,
+            "n": 50,
+            "mean": -0.1516
+          },
+          {
+            "t": 14,
+            "n": 29,
+            "mean": -0.099
+          },
+          {
+            "t": 15,
+            "n": 37,
+            "mean": -0.2959
+          },
+          {
+            "t": 16,
+            "n": 29,
+            "mean": -0.2708
+          },
+          {
+            "t": 17,
+            "n": 22,
+            "mean": -0.181
+          },
+          {
+            "t": 18,
+            "n": 13,
+            "mean": -0.3149
+          },
+          {
+            "t": 19,
+            "n": 12,
+            "mean": -0.1575
+          },
+          {
+            "t": 20,
+            "n": 17,
+            "mean": 0.0698
+          },
+          {
+            "t": 21,
+            "n": 8,
+            "mean": -0.0097
+          },
+          {
+            "t": 22,
+            "n": 11,
+            "mean": -0.1059
+          },
+          {
+            "t": 23,
+            "n": 9,
+            "mean": -0.307
+          },
+          {
+            "t": 26,
+            "n": 6,
+            "mean": -0.0003
+          },
+          {
+            "t": 27,
+            "n": 9,
+            "mean": -0.0733
+          },
+          {
+            "t": 28,
+            "n": 13,
+            "mean": -0.189
+          },
+          {
+            "t": 29,
+            "n": 6,
+            "mean": -0.6224
+          },
+          {
+            "t": 30,
+            "n": 6,
+            "mean": 0.0276
+          },
+          {
+            "t": 31,
+            "n": 13,
+            "mean": 0.0615
+          },
+          {
+            "t": 32,
+            "n": 5,
+            "mean": -0.4952
+          },
+          {
+            "t": 33,
+            "n": 7,
+            "mean": -0.1083
+          },
+          {
+            "t": 35,
+            "n": 5,
+            "mean": -0.3386
+          },
+          {
+            "t": 36,
+            "n": 5,
+            "mean": -0.2873
+          },
+          {
+            "t": 37,
+            "n": 8,
+            "mean": -0.4415
+          },
+          {
+            "t": 38,
+            "n": 6,
+            "mean": 0.2619
+          },
+          {
+            "t": 39,
+            "n": 8,
+            "mean": -0.0376
+          },
+          {
+            "t": 40,
+            "n": 6,
+            "mean": 0.3621
+          },
+          {
+            "t": 41,
+            "n": 8,
+            "mean": -0.2454
+          },
+          {
+            "t": 42,
+            "n": 6,
+            "mean": 0.0054
+          },
+          {
+            "t": 47,
+            "n": 5,
+            "mean": -0.3203
+          }
+        ],
+        "france": [
+          {
+            "t": 0,
+            "n": 10,
+            "mean": 0.1359
+          },
+          {
+            "t": 2,
+            "n": 6,
+            "mean": 0.1462
+          },
+          {
+            "t": 5,
+            "n": 6,
+            "mean": 0.059
+          },
+          {
+            "t": 7,
+            "n": 10,
+            "mean": -0.2625
+          },
+          {
+            "t": 8,
+            "n": 6,
+            "mean": -0.4478
+          },
+          {
+            "t": 13,
+            "n": 6,
+            "mean": 0.4271
+          }
+        ],
+        "spain": [
+          {
+            "t": 0,
+            "n": 383,
+            "mean": 0.3568
+          },
+          {
+            "t": 1,
+            "n": 300,
+            "mean": 0.3764
+          },
+          {
+            "t": 2,
+            "n": 283,
+            "mean": 0.3786
+          },
+          {
+            "t": 3,
+            "n": 311,
+            "mean": 0.2904
+          },
+          {
+            "t": 4,
+            "n": 291,
+            "mean": 0.4011
+          },
+          {
+            "t": 5,
+            "n": 245,
+            "mean": 0.2808
+          },
+          {
+            "t": 6,
+            "n": 216,
+            "mean": 0.2284
+          },
+          {
+            "t": 7,
+            "n": 164,
+            "mean": 0.2498
+          },
+          {
+            "t": 8,
+            "n": 130,
+            "mean": 0.2564
+          },
+          {
+            "t": 9,
+            "n": 83,
+            "mean": 0.278
+          },
+          {
+            "t": 10,
+            "n": 74,
+            "mean": 0.2564
+          },
+          {
+            "t": 11,
+            "n": 56,
+            "mean": 0.2434
+          },
+          {
+            "t": 12,
+            "n": 56,
+            "mean": 0.3042
+          },
+          {
+            "t": 13,
+            "n": 41,
+            "mean": 0.2157
+          },
+          {
+            "t": 14,
+            "n": 51,
+            "mean": 0.3483
+          },
+          {
+            "t": 15,
+            "n": 41,
+            "mean": 0.1891
+          },
+          {
+            "t": 16,
+            "n": 36,
+            "mean": 0.3619
+          },
+          {
+            "t": 17,
+            "n": 35,
+            "mean": 0.4361
+          },
+          {
+            "t": 18,
+            "n": 16,
+            "mean": 0.2325
+          },
+          {
+            "t": 19,
+            "n": 16,
+            "mean": 0.2615
+          },
+          {
+            "t": 20,
+            "n": 12,
+            "mean": 0.2277
+          },
+          {
+            "t": 21,
+            "n": 12,
+            "mean": 0.5471
+          },
+          {
+            "t": 22,
+            "n": 10,
+            "mean": 0.1697
+          },
+          {
+            "t": 23,
+            "n": 11,
+            "mean": 0.2167
+          },
+          {
+            "t": 24,
+            "n": 7,
+            "mean": 0.7076
+          },
+          {
+            "t": 26,
+            "n": 6,
+            "mean": 0.4805
+          },
+          {
+            "t": 27,
+            "n": 11,
+            "mean": 0.4495
+          },
+          {
+            "t": 28,
+            "n": 9,
+            "mean": -0.0238
+          },
+          {
+            "t": 29,
+            "n": 6,
+            "mean": -0.3682
+          },
+          {
+            "t": 30,
+            "n": 7,
+            "mean": 0.3681
+          },
+          {
+            "t": 31,
+            "n": 13,
+            "mean": 0.3452
+          },
+          {
+            "t": 34,
+            "n": 8,
+            "mean": 0.6932
+          },
+          {
+            "t": 35,
+            "n": 10,
+            "mean": 0.3956
+          },
+          {
+            "t": 36,
+            "n": 5,
+            "mean": 0.4115
+          },
+          {
+            "t": 38,
+            "n": 10,
+            "mean": 0.4545
+          },
+          {
+            "t": 39,
+            "n": 5,
+            "mean": 0.5668
+          },
+          {
+            "t": 41,
+            "n": 12,
+            "mean": 0.1352
+          },
+          {
+            "t": 42,
+            "n": 5,
+            "mean": -0.0332
+          },
+          {
+            "t": 45,
+            "n": 7,
+            "mean": 0.2168
+          }
+        ]
+      },
+      "unattributed": 3653
+    }
+  }
+}

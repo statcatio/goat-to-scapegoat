@@ -4,21 +4,21 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='5' fill='%233C6E9F'/><g fill='none' stroke='%23EFF3E3' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'><path d='M9 8l3 5M23 8l-3 5'/><path d='M10 13h12v6a6 6 0 0 1-12 0z'/><path d='M13.5 16h.01M18.5 16h.01'/></g></svg>">
-<meta name="description" content="Reddit turned on Argentina between two World Cup finals. A sentiment analysis of the flip - same team, opposite reaction. Did they change, or did we?">
+<meta name="description" content="The internet turned on Argentina between two World Cup finals. 45,016 comments, scored. Same team, opposite reaction - did they change, or did we?">
 <meta property="og:type" content="article">
 <meta property="og:title" content="From GOAT to Scapegoat">
-<meta property="og:description" content="Reddit turned on Argentina between two World Cup finals. Same team, opposite reaction - did they change, or did we?">
+<meta property="og:description" content="The internet turned on Argentina between two World Cup finals. Same team, opposite reaction - did they change, or did we?">
 <meta property="og:url" content="https://statcatio.github.io/goat-to-scapegoat/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="From GOAT to Scapegoat">
-<meta name="twitter:description" content="Reddit turned on Argentina between two World Cup finals. Same team, opposite reaction - did they change, or did we?">
+<meta name="twitter:description" content="The internet turned on Argentina between two World Cup finals. Same team, opposite reaction - did they change, or did we?">
 <title>From GOAT to Scapegoat — a sentiment almanac</title>
 <!--
   Full-surface mockup inside the committed world (The Statistical Almanac).
   Visual system fixed by DESIGN.md; this page derives structure from the story:
   masthead thesis -> personal opening -> method -> interactive timeline (centerpiece)
   -> two-final verdict -> honest close. ALL figures are labeled SAMPLE until the
-  Reddit threads are scraped. No real data is presented as findings.
+  every figure below is computed from real scored comments.
 -->
 <style>
   :root {
@@ -287,7 +287,7 @@
         <span class="src">Source · r/worldcup match threads · 2022 &amp; 2026</span>
       </div>
       <h1 class="wordmark">From GOAT<br>to Scapegoat</h1>
-      <p class="dek">Measuring how Reddit&rsquo;s verdict on Argentina turned between two World Cup finals &mdash; and asking the honest question underneath the pile-on: <b>did they change, or did we?</b></p>
+      <p class="dek">Measuring how the internet&rsquo;s verdict on Argentina turned between two World Cup finals &mdash; and asking the honest question underneath the pile-on: <b>did they change, or did we?</b></p>
 
       <div class="divtable">
         <div class="divtable-head">
@@ -338,13 +338,13 @@
     <div class="wrap">
       <p class="kicker">How we measure</p>
       <h2>Read the room where it&rsquo;s written down</h2>
-      <div class="reading"><p>A match thread is the closest thing football has to a live transcript of the crowd. We take every comment from the two final threads on r/worldcup, score each for sentiment and toxicity, and bucket it by who it&rsquo;s aimed at &mdash; Argentina or the opponent.</p></div>
+      <div class="reading"><p>The comment section under a final&rsquo;s highlights is the closest thing football has to a transcript of the crowd talking afterwards. We take every top-level comment on the official highlights of both finals, score each for sentiment, and bucket it by who it&rsquo;s aimed at &mdash; Argentina, or the opponent.</p></div>
       <div class="steps">
-        <div class="step"><span class="n">Scrape</span><h3>Every comment</h3><p>The full comment tree of each final&rsquo;s match thread, pulled via Reddit&rsquo;s API with timestamps &mdash; the minute-by-minute record.</p></div>
-        <div class="step"><span class="n">Analyze</span><h3>Per team</h3><p>Sentiment and toxicity models score each comment, tagged to Argentina or the opponent by player and country keywords.</p></div>
-        <div class="step"><span class="n">Visualize</span><h3>The flip, in time</h3><p>Sentiment plotted across all 90-plus minutes, so a shift in mood shows up exactly when it happened.</p></div>
+        <div class="step"><span class="n">Collect</span><h3>45,016 comments</h3><p>Every comment on four videos &mdash; each final&rsquo;s highlights from two channels, FOX and FIFA &mdash; pulled through the YouTube Data API with timestamps.</p></div>
+        <div class="step"><span class="n">Score</span><h3>In any language</h3><p>A multilingual model rates each comment from &minus;1 to +1. English-only tools score Spanish as neutral, which would quietly delete Argentina&rsquo;s own supporters from the record.</p></div>
+        <div class="step"><span class="n">Compare</span><h3>Like with like</h3><p>Argentina won in 2022 and lost in 2026. So the test isn&rsquo;t their sentiment falling &mdash; it&rsquo;s whether it fell further than a losing finalist&rsquo;s normally does.</p></div>
       </div>
-      <div class="caveat"><p><b>One honest caveat.</b> Sarcasm breaks sentiment models &mdash; a satire sub like r/soccercirclejerk praising Argentina &ldquo;sincerely&rdquo; reads as positive. So sources are kept separate and never averaged into one tidy number. We measure the discourse, not deliver a verdict.</p></div>
+      <div class="caveat"><p><b>The caveat that matters.</b> Losers get treated worse than winners, always &mdash; so a drop on its own proves nothing. That&rsquo;s why France is in this piece: they lost the 2022 final, which makes them the control. Two further limits worth your scepticism: sarcasm still breaks sentiment models, and a comment naming two teams is counted for both. The keyword lists are published with the data, so you can check the work.</p></div>
     </div>
   </section>
 
