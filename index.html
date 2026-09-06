@@ -159,6 +159,18 @@
   .step .n { font-family: var(--display); font-weight: 800; font-size: 0.85rem; letter-spacing: 0.1em; color: var(--accent-ink); text-transform: uppercase; }
   .step h3 { font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: -0.01em; font-size: 1.15rem; margin: 0.5rem 0 0.6rem; }
   .step p { font-size: 0.95rem; color: var(--ink-2); margin: 0; }
+
+  /* robustness checks */
+  .checks { display: grid; gap: clamp(1.5rem, 3vw, 2.25rem); margin-top: clamp(1.75rem, 4vw, 2.5rem); }
+  .check { border-top: 1px solid var(--rule); padding-top: 1.15rem; }
+  .check .n { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); }
+  .check h3 { margin: 0.45rem 0 0.5rem; font-size: clamp(1.05rem, 2.2vw, 1.3rem); font-weight: 650; letter-spacing: -0.015em; }
+  .check p { margin: 0 0 0.9rem; max-width: 46rem; color: var(--ink-2); font-size: 0.95rem; line-height: 1.55; }
+  .cfig { display: flex; flex-wrap: wrap; gap: 0.5rem 2rem; font-variant-numeric: tabular-nums; }
+  .cfig div { font-size: 0.86rem; color: var(--ink-2); }
+  .cfig b { display: block; font-size: 1.28rem; font-weight: 700; letter-spacing: -0.02em; margin-top: 0.15rem; }
+  .cfig .up { color: #4E7D3B; } .cfig .dn { color: var(--neg); }
+  .verdictline { margin-top: 1.1rem; padding: 0.7rem 0.95rem; border: 1px solid var(--rule-strong); background: var(--paper-2); font-size: 0.92rem; }
   .caveat { margin-top: 2.2rem; padding: 1.2rem 1.4rem; border: 1px solid var(--rule-strong); background: var(--paper-2); }
   .caveat b { color: var(--ink); }
   .caveat p { margin: 0; font-size: 0.98rem; color: var(--ink-2); }
@@ -420,6 +432,63 @@
   </section>
 
   <!-- CLOSE -->
+
+  <section id="checks">
+    <div class="wrap">
+      <p class="kicker">Three ways this could be wrong</p>
+      <h2>Testing it against itself</h2>
+      <div class="reading"><p>A sentiment drop is easy to produce by accident. Here are the three
+      likeliest ways this one could be an artefact, each tested against the same scores.</p></div>
+
+      <div class="checks">
+
+        <div class="check">
+          <span class="n">Check 01 &middot; the result</span>
+          <h3>Maybe people are just crueller about losers</h3>
+          <p>Argentina won in 2022 and lost in 2026, so some fall is guaranteed by the result alone.
+          The test is to hold the result still: France <em>also</em> lost a final. Compare the two
+          losing sides.</p>
+          <div class="cfig">
+            <div>France, beaten in 2022 <span style='font-size:0.72rem'>n = 1,803</span><b class="up">+0.14</b></div>
+            <div>Argentina, beaten in 2026 <span style='font-size:0.72rem'>n = 2,505</span><b class="dn">−0.28</b></div>
+            <div>the gap<b class="dn">&minus;0.42</b></div>
+          </div>
+          <div class="verdictline"><b>Survives.</b> France lost and stayed liked. Losing does not
+          account for it.</div>
+        </div>
+
+        <div class="check">
+          <span class="n">Check 02 &middot; attribution</span>
+          <h3>Maybe the anger was aimed at someone else</h3>
+          <p>The model reads a comment&rsquo;s overall tone, not its target. &ldquo;Spain only won
+          because the referee cheated&rdquo; is hostile <em>and</em> pro-Argentina, yet it names
+          Argentina and counts. So drop every comment that also names the opponent, leaving only
+          those where Argentina is the sole team mentioned.</p>
+          <div class="cfig">
+            <div>headline, all comments naming Argentina<b class="dn">−0.63</b></div>
+            <div>Argentina named alone <span style='font-size:0.72rem'>n = 1,498</span><b class="dn">−0.77</b></div>
+          </div>
+          <div class="verdictline"><b>Survives, and grows.</b> The cleaner the attribution, the
+          bigger the flip &mdash; so the headline figure is the cautious one, not the flattering one.</div>
+        </div>
+
+        <div class="check">
+          <span class="n">Check 03 &middot; the crowd</span>
+          <h3>Maybe it is one comment section&rsquo;s mood</h3>
+          <p>Every figure above comes from FOX&rsquo;s uploads. FIFA&rsquo;s official highlights drew
+          a different, more global audience. If the flip were a quirk of one crowd, it should not
+          repeat there.</p>
+          <div class="cfig">
+            <div>FOX audience<b class="dn">−0.63</b></div>
+            <div>FIFA audience<b class="dn">−0.59</b></div>
+          </div>
+          <div class="verdictline"><b>Survives.</b> Two audiences, same direction, similar size.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <section id="close">
     <div class="wrap reading">
       <p class="kicker">What the data can &mdash; and can&rsquo;t &mdash; say</p>

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31T22:52:21-04:00",
+  "generated_at": "2026-09-06T18:31:22-04:00",
   "method": {
     "source": "YouTube Data API v3, public comments",
     "model": "cardiffnlp/twitter-xlm-roberta-base-sentiment",
@@ -187,7 +187,8 @@
         "publico"
       ]
     },
-    "topic_note": "share is the percentage of scored comments in the window mentioning that topic; a comment can raise several"
+    "topic_note": "share is the percentage of scored comments in the window mentioning that topic; a comment can raise several",
+    "checks_note": "all_naming_argentina is the headline figure. argentina_only drops comments that also name the opponent, where the model cannot tell who the tone is aimed at; the flip is larger there, so the headline is the conservative number. losing_side is the result control: France lost in 2022, Argentina lost in 2026."
   },
   "datasets": {
     "fox_arg_fra_2022": {
@@ -4753,6 +4754,68 @@
         ]
       },
       "unattributed": 3653
+    }
+  },
+  "checks": {
+    "fox": {
+      "all_naming_argentina": {
+        "y2022": 0.3492,
+        "n2022": 3157,
+        "y2026": -0.2775,
+        "n2026": 2505,
+        "swing": -0.6267
+      },
+      "argentina_only": {
+        "y2022": 0.3684,
+        "n2022": 2193,
+        "y2026": -0.4021,
+        "n2026": 1498,
+        "swing": -0.7705
+      },
+      "both_teams_named": {
+        "y2022": 0.3054,
+        "n2022": 964,
+        "y2026": -0.0922,
+        "n2026": 1007,
+        "swing": -0.3976
+      },
+      "losing_side": {
+        "y2022_france": 0.142,
+        "n2022": 1803,
+        "y2026_argentina": -0.2775,
+        "n2026": 2505,
+        "gap": -0.4195
+      }
+    },
+    "fifa": {
+      "all_naming_argentina": {
+        "y2022": 0.4214,
+        "n2022": 2191,
+        "y2026": -0.1657,
+        "n2026": 2758,
+        "swing": -0.5871
+      },
+      "argentina_only": {
+        "y2022": 0.4673,
+        "n2022": 1634,
+        "y2026": -0.2655,
+        "n2026": 1695,
+        "swing": -0.7328
+      },
+      "both_teams_named": {
+        "y2022": 0.2866,
+        "n2022": 557,
+        "y2026": -0.0066,
+        "n2026": 1063,
+        "swing": -0.2932
+      },
+      "losing_side": {
+        "y2022_france": 0.2061,
+        "n2022": 976,
+        "y2026_argentina": -0.1657,
+        "n2026": 2758,
+        "gap": -0.3718
+      }
     }
   }
 }

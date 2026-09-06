@@ -306,6 +306,49 @@ def main() -> None:
             "unattributed": sum(1 for r in rows if not r["teams"]),
         }
 
+    # --- robustness checks ----------------------------------------------------
+    # Three ways the headline could be an artefact, each tested against the same
+    # scores: the result confound, ambiguous attribution, and one channel's crowd.
+    def mean_of(rows, pred):
+        sel = [r["s"] for r in rows if pred(r)]
+        return (round(statistics.fmean(sel), 4), len(sel)) if sel else (None, 0)
+
+    checks = {}
+    for pair, opp in (("fox", None), ("fifa", None)):
+        r22 = datasets[f"{pair}_arg_fra_2022"]["rows"]
+        r26 = datasets[f"{pair}_arg_spa_2026"]["rows"]
+        block = {}
+        for name, p22, p26 in [
+            ("all_naming_argentina",
+             lambda r: "argentina" in r["teams"],
+             lambda r: "argentina" in r["teams"]),
+            ("argentina_only",
+             lambda r: "argentina" in r["teams"] and "france" not in r["teams"],
+             lambda r: "argentina" in r["teams"] and "spain" not in r["teams"]),
+            ("both_teams_named",
+             lambda r: "argentina" in r["teams"] and "france" in r["teams"],
+             lambda r: "argentina" in r["teams"] and "spain" in r["teams"]),
+        ]:
+            m22, n22 = mean_of(r22, p22)
+            m26, n26 = mean_of(r26, p26)
+            block[name] = {"y2022": m22, "n2022": n22, "y2026": m26, "n2026": n26,
+                           "swing": round(m26 - m22, 4) if None not in (m22, m26) else None}
+        # the result control: each final's losing side
+        lm22, ln22 = mean_of(r22, lambda r: "france" in r["teams"])
+        lm26, ln26 = mean_of(r26, lambda r: "argentina" in r["teams"])
+        block["losing_side"] = {"y2022_france": lm22, "n2022": ln22,
+                                "y2026_argentina": lm26, "n2026": ln26,
+                                "gap": round(lm26 - lm22, 4)}
+        checks[pair] = block
+    out["checks"] = checks
+    out["method"]["checks_note"] = (
+        "all_naming_argentina is the headline figure. argentina_only drops comments "
+        "that also name the opponent, where the model cannot tell who the tone is "
+        "aimed at; the flip is larger there, so the headline is the conservative "
+        "number. losing_side is the result control: France lost in 2022, Argentina "
+        "lost in 2026."
+    )
+
     PUBLIC.mkdir(parents=True, exist_ok=True)
     dest = PUBLIC / "aggregates.json"
     dest.write_text(json.dumps(out, ensure_ascii=False, indent=2))
