@@ -2,100 +2,122 @@
 
 **Live → <https://statcatio.github.io/goat-to-scapegoat/>**
 · [The Lab](https://statcatio.github.io/goat-to-scapegoat/lab/)
-· [statcat.io](https://statcatio.github.io/)
+· [statcat](https://statcatio.github.io/)
 
 A data-driven narrative about how online sentiment toward Argentina's national
-team shifted between two World Cup finals — 2022 (won; Messi crowned the
-undisputed GOAT) and 2026 — using real Reddit match-thread reactions.
+team shifted between two World Cup finals — 2022, which they won and Messi was
+crowned the undisputed GOAT, and 2026, which they lost to Spain.
 
 One question, asked honestly: **did Argentina change, or did we?**
 
-> ⚠️ **Status: placeholder data.** The two Reddit threads are identified but not
-> yet scraped. Every figure and quote currently on the page is illustrative and
-> labeled `SAMPLE`. Nothing here is a finding yet.
+## The finding
+
+Sentiment toward Argentina, mean of P(positive) − P(negative) over comments
+naming them, in the 42 days after each final:
+
+| audience | 2022 (won) | 2026 (lost) |
+| --- | --- | --- |
+| FOX | **+0.349** · 21% negative | **−0.278** · 57% negative |
+| FIFA | **+0.421** · 16% negative | **−0.166** · 47% negative |
+
+Argentina won the first final and lost the second, so a fall is exactly what the
+result alone would predict. **That is why France is in this piece.** France lost
+the 2022 final and still drew net-positive sentiment — +0.142 (FOX) and +0.206
+(FIFA). Argentina lost in 2026 and went net-negative. Losing does not account
+for the gap, and the gap appears in both audiences independently.
+
+Every subject people raised moved negative for Argentina. The Messi
+conversation both shrank and soured: from 30% of comments at +0.431 in 2022 to
+15% at −0.249 in 2026.
 
 ## What's in here
 
-This repo **is** the published site — GitHub Pages serves it directly, so a push
-to `main` is a deploy.
+This repo **is** the published site — GitHub Pages serves it, so a push to
+`main` is a deploy.
 
 | Path | What it is |
 | --- | --- |
-| `index.html` | The article. Self-contained: inlined D3, CSS, and photos. |
-| `lab/` | [The Lab](https://statcatio.github.io/goat-to-scapegoat/lab/) — the five prototypes, kept as they were when set aside. |
-| `landing.html` | Plate I — the first hero. Copy survived, layout didn't. |
-| `aspect-flow.html` | Plate II — theme flow, click-driven. Set aside. |
-| `scrolly-flow.html` | Plate III — theme flow, scroll-driven. **Shipped.** |
-| `flow-d3.html` | Plate IV — theme flow rebuilt in D3. Set aside. |
-| `timeline-d3.html` | Plate V — the two-final timeline. **Shipped.** |
-| `scrape.py` | Reddit comment-tree scraper (PRAW). |
-| `PRODUCT.md` | Product framing: audience, purpose, principles, caveats. |
-| `DESIGN.md` | The visual system the article is built on. |
-| `data/` | Scraped output, reference clips, and screenshots. |
+| `index.html` | The article. Self-contained: inlined D3, CSS, photos. |
+| `lab/` | [The Lab](https://statcatio.github.io/goat-to-scapegoat/lab/) — five prototypes, kept as they were when set aside. |
+| `scrape_youtube.py` | Collects public comments via the YouTube Data API. |
+| `analyze.py` | Scores them and writes the publishable aggregates. |
+| `data/public/aggregates.json` | Counts, means, and the keyword lists. No usernames, no comment text. |
+| `PRODUCT.md` · `DESIGN.md` | Product framing and the visual system. |
+| `scrape.py` | The abandoned Reddit scraper, kept as a record. See below. |
 
 ## Method
 
-- **Source:** Reddit match threads via the official API (PRAW). Anonymous
-  scraping is hard-blocked with a 403, so authenticated access is required.
-  - 2022 — Argentina vs France, `r/worldcup` thread `zoz9vx`
-  - 2026 — Spain vs Argentina, `r/worldcup` thread `1v0wji4`
-- **Analysis:** comment-level sentiment and toxicity, bucketed *per team* —
-  sentiment toward Argentina vs. toward the opponent — by player and country
-  keyword matching.
-- **Known caveat:** satire subreddits (e.g. r/soccercirclejerk) break
-  off-the-shelf sentiment models. Sources are kept separate rather than pooled
-  into a single misleading average.
+- **Source:** public comments on four YouTube videos — each final's highlights
+  from two channels, so the comparison can be checked against a second audience
+  rather than resting on one.
+  - FOX: [`Mxkg3qLIPC8`](https://youtu.be/Mxkg3qLIPC8) (2022) · [`x-cpRHf4xd4`](https://youtu.be/x-cpRHf4xd4) (2026)
+  - FIFA: [`zhEWqfP6V_w`](https://youtu.be/zhEWqfP6V_w) (2022) · [`6HaHNYjnghE`](https://youtu.be/6HaHNYjnghE) (2026)
+- **Scope:** 45,016 comments collected, 28,051 scored — top-level only, within
+  42 days of each video's publication. Replies are excluded because the API caps
+  inline replies at 5 per thread, so they came back ~40% captured; mixing a
+  complete sample with a partial one would bias the comparison. The 42-day
+  window makes 2022 (which has years of comments) and 2026 (which has weeks)
+  comparable over equal elapsed time.
+- **Sentiment:** `cardiffnlp/twitter-xlm-roberta-base-sentiment`. Multilingual
+  by necessity — a large share of comments are Spanish, and an English-only
+  model scores them neutral, which would quietly delete Argentina's own
+  supporters and manufacture a decline that isn't there.
+- **Attribution:** teams and subjects matched by keyword. The lists are
+  published inside `aggregates.json` so the work can be checked.
+
+### Limits
+
+- Different opponents. France's fanbase is not Spain's; the control is strong
+  but not perfect.
+- Sarcasm defeats sentiment models. It defeats this one too.
+- A comment naming two teams is counted for both.
+- Conduct and tactics rest on small samples (n = 48–99) and are labelled as
+  such in the piece.
+- ~75% of each video's reported comment count was retrieved, consistently
+  across all four.
 
 The piece measures **the discourse about** Argentina. It does not issue a
 verdict on the team's conduct.
 
-## Running the scraper
+## Why not Reddit
 
-You only need this to refresh the data; the site itself needs no build step.
+The piece was designed around Reddit match threads, which are timestamped
+*during* the match. Reddit closed self-service Data API access under the
+[Responsible Builder Policy](https://support.reddithelp.com/hc/en-us/articles/42728983564564-Responsible-Builder-Policy),
+which applies to Reddit data however it is obtained — including third-party
+mirrors — and states that research using data collected outside the Reddit for
+Researchers Program violates it. `scrape.py` is kept as the record of that
+approach; it cannot be run.
 
-<details>
-<summary>One-time Reddit API setup (~10 min)</summary>
+The cost of moving to YouTube is real: comments arrive *after* the match rather
+than during it, so the timeline measures hours since the highlights posted
+rather than minutes on the match clock.
 
-1. Log in to Reddit and go to <https://www.reddit.com/prefs/apps>
-2. Click **"are you a developer? create an app..."** at the bottom
-3. Fill in:
-   - **name:** `wc-hatewatch`
-   - **type:** **`script`** ← important
-   - **redirect uri:** `http://localhost:8080` (unused, but required)
-4. **create app** — the **client id** is the string under "personal use script",
-   and the **secret** is the `secret` field
-
-</details>
+## Running it
 
 ```bash
-cp .env.example .env    # paste in your client id + secret
-pip install -r requirements.txt
-python scrape.py
+python3 -m venv .venv && ./.venv/bin/pip install -r requirements.txt
+cp .env.example .env          # add YOUTUBE_API_KEY
+./.venv/bin/python scrape_youtube.py --search   # find candidate videos
+./.venv/bin/python scrape_youtube.py --check    # verify ids, catch disabled comments
+./.venv/bin/python scrape_youtube.py            # full pull, ~4 min
+./.venv/bin/python analyze.py                   # score, ~12 min
+./.venv/bin/python analyze.py --from-cache      # re-aggregate instantly
 ```
 
-Writes `data/arg_fra_2022.json` and `data/arg_spa_2026.json` — full comment
-trees with author, score, body, and `created_utc` (the timeline axis).
+Get a key at [console.cloud.google.com](https://console.cloud.google.com):
+create a project, enable **YouTube Data API v3**, then Credentials → API key.
+Free, self-service; quota is 10,000 units/day and a full pull costs under 800.
 
-> A World Cup **final** thread holds 10k+ comments, so a full pull takes a few
-> minutes. To iterate faster, set `REPLACE_MORE_LIMIT = 32` near the top of
-> `scrape.py`.
+Raw pulls land in `data/raw/`, which is gitignored. This repo is public and
+Pages serves every file in it, so a committed corpus would publish tens of
+thousands of usernames and comment bodies — including comments their authors
+have since deleted. Only the de-identified aggregates ship.
 
 ## Deploying
 
-There is no build step and no publish script. GitHub Pages serves this repo as-is:
-
-```bash
-git add -A && git commit -m "..." && git push
-```
-
-Live in about a minute at `statcatio.github.io/goat-to-scapegoat/`.
-`.nojekyll` is present so files are served verbatim.
-
-## Next up
-
-- Scrape both threads and replace every `SAMPLE` figure with real values
-- `analyze.py` — per-comment sentiment + toxicity, bucketed per team
-- Wire the real series into the timeline in `index.html`
+No build step. `git push` and it's live in about a minute. `.nojekyll` keeps
+files served verbatim.
 
 ---
 

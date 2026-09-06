@@ -44,15 +44,17 @@ core story must land even for a passive scroller who never interacts.
 
 ## Capabilities and Constraints
 
-- **Data source:** Reddit match-thread comments via the official API (PRAW) —
-  the two final threads (2022 ARG–FRA `zoz9vx`; 2026 ESP–ARG `1v0wji4`).
-  Anonymous scraping is hard-blocked (403); authenticated API access is required.
+- **Data source:** public YouTube comments via the YouTube Data API v3, on each
+  final's highlights from two channels (FOX and FIFA) so the comparison can be
+  checked against a second audience. Reddit was the original plan and is closed
+  to self-service access; see README for why.
 - **Analysis:** comment-level sentiment + toxicity, bucketed *per team*
   (sentiment toward Argentina vs. the opponent) via name/player keyword matching.
 - **Known caveat:** satire/sarcasm sources (e.g. r/soccercirclejerk) break off-the-shelf
   sentiment models; sources are kept separate rather than pooled into one average.
-- **Visualization:** a timeline is the intended centerpiece (D3, for flexibility),
-  tracking comment volume and sentiment across the match.
+- **Visualization:** a two-panel D3 timeline remains the centerpiece, but its
+  axis is hours since each final's highlights posted — roughly 70% of comments
+  arrive on day zero, so that is where the resolution belongs.
 - **Effort/scope:** a focused, largely single-narrative web piece built in a small
   time budget (~10 hours of work), not a large multi-page application.
 - **Undecided (not locked):** whether the piece stays strictly two-final or later
@@ -70,10 +72,22 @@ core story must land even for a passive scroller who never interacts.
 
 ## Evidence on Hand
 
-- Two real Reddit threads identified (IDs above). **No comments have been scraped
-  yet** — as of now there is zero analyzed data. Future work must not fabricate
-  sentiment numbers, comments, or findings; any placeholder must be clearly
-  labeled synthetic until real data lands.
+- **Real data now exists** (2026-09-01). 45,016 public comments collected from
+  four YouTube videos — each final's highlights from FOX and from FIFA — of which
+  28,051 top-level comments within 42 days of publication were scored with a
+  multilingual sentiment model. Every figure in the piece is computed from them;
+  nothing on the page is illustrative any more.
+- **The headline result.** Sentiment toward Argentina fell from +0.349 to −0.278
+  (FOX) and +0.421 to −0.166 (FIFA); negative comments about them roughly
+  tripled. Because Argentina won in 2022 and lost in 2026, the fall is confounded
+  by the result — so France, who lost in 2022 and still drew +0.142 / +0.206, is
+  carried in the piece as the control. The gap survives in both audiences.
+- **Superseded:** the Reddit plan. Reddit closed self-service Data API access
+  under the Responsible Builder Policy, which applies to Reddit data however it
+  is obtained. The cost is that comments are post-match rather than in-match, so
+  the timeline measures hours since the highlights posted, not the match clock.
+- The standing rule still holds: never fabricate sentiment numbers, comments, or
+  findings, and label anything illustrative as such.
 - A drafted narrative and voice exist: the author's personal arc; the 2022
   "¿Qué mirás, bobo?" Messi moment and the mocking of the Netherlands coach; and
   booing of Messi witnessed in person during the 2026 final.
