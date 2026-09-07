@@ -55,6 +55,17 @@
     html { scroll-behavior: auto; }
   }
 
+
+  /* ---- top bar: a persistent way back to the rest of the site ---- */
+  .topbar { border-bottom: 1px solid var(--rule); font-size: 0.78rem; letter-spacing: 0.04em; }
+  .topbar .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem; padding-top: 0.9rem; padding-bottom: 0.9rem;
+  }
+  .topbar a { color: var(--ink-2); text-decoration: none; }
+  .topbar a:hover { color: var(--accent-ink); }
+  .topbar .back { font-weight: 600; color: var(--ink); }
+
   .wrap { width: 100%; max-width: 64rem; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem); }
   .reading { max-width: 40rem; }
 
@@ -298,6 +309,13 @@
 
 <main>
   <!-- MASTHEAD -->
+<div class="topbar">
+  <div class="wrap">
+    <a class="back" href="/">&larr; statcat</a>
+    <a href="lab/">the lab &rarr;</a>
+  </div>
+</div>
+
   <section class="masthead">
     <div class="wrap">
       <div class="meta">
@@ -502,7 +520,7 @@
   <footer>
     <div class="wrap">
       <div class="frow">
-        <span><b>From GOAT to Scapegoat</b> &mdash; a sentiment almanac</span>
+        <span><b>From GOAT to Scapegoat</b> &mdash; a sentiment almanac &middot; <a href="/" style="color:var(--accent-ink)">statcat &rarr;</a></span>
         <span>Data: YouTube Data API &middot; 28,051 comments scored &middot; method above &middot; <a href="lab/" style="color:var(--accent-ink)">the lab &rarr;</a></span>
       </div>
       <p class="disc">Every figure on this page is computed from 28,051 scored comments collected through the YouTube Data API. Sentiment is a multilingual model&rsquo;s P(positive)&minus;P(negative); teams and subjects are matched by published keyword lists. Sarcasm still defeats sentiment models, and a comment naming two teams counts for both &mdash; the <a href="data/public/aggregates.json">aggregate data</a> is here if you want to check.</p>
