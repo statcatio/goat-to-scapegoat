@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='5' fill='%233C6E9F'/><g fill='none' stroke='%23EFF3E3' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'><path d='M9 8l3 5M23 8l-3 5'/><path d='M10 13h12v6a6 6 0 0 1-12 0z'/><path d='M13.5 16h.01M18.5 16h.01'/></g></svg>">
+<meta name="description" content="How the sentiment numbers behind From GOAT to Scapegoat were actually collected and scored: data source, model choice, pipeline, and the checks run before publishing.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Measuring the Internet's Turn on Argentina">
+<meta property="og:description" content="The data collection, model choice, and robustness checks behind From GOAT to Scapegoat.">
+<meta property="og:url" content="https://statcatio.github.io/goat-to-scapegoat/blog.html">
+<meta property="og:site_name" content="statcat">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Measuring the Internet's Turn on Argentina">
+<title>Measuring the Internet's Turn on Argentina — Field Notes</title>
+<style>
+  :root {
+    --paper: #EFF3E3;
+    --paper-2: #E5EAD5;
+    --ink: #1C1A14;
+    --ink-2: #5B5647;
+    --rule: rgba(28, 26, 20, 0.22);
+    --rule-strong: rgba(28, 26, 20, 0.5);
+    --accent: #3C6E9F;
+    --accent-ink: #2E5A85;
+    --neg: #9E4A34;
+    --display: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --body: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); -webkit-font-smoothing: antialiased; }
+
+  .wrap { width: 100%; max-width: 44rem; margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 3rem); }
+
+  .topbar { border-bottom: 1px solid var(--rule); font-size: 0.78rem; letter-spacing: 0.04em; }
+  .topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-top: 0.9rem; padding-bottom: 0.9rem; }
+  .topbar a { color: var(--ink-2); text-decoration: none; }
+  .topbar a:hover { color: var(--accent-ink); }
+  .topbar .back { font-weight: 600; color: var(--ink); }
+
+  section { padding: clamp(2.25rem, 6vw, 3.5rem) 0; }
+  section + section { border-top: 1px solid var(--rule); }
+
+  .meta {
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 1rem; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-2); padding-bottom: 0.65rem; border-bottom: 1px solid var(--rule-strong);
+  }
+  .meta .rec { color: var(--ink); font-weight: 600; }
+  .meta .src { text-align: right; }
+
+  .wordmark {
+    margin: clamp(1.75rem, 5vw, 3rem) 0 0;
+    font-family: var(--display); font-weight: 800; text-transform: uppercase;
+    letter-spacing: -0.03em; line-height: 0.98;
+    font-size: clamp(2rem, 7vw, 3.4rem); text-wrap: balance;
+  }
+  .dek { margin: clamp(1rem, 2.5vw, 1.4rem) 0 0; font-size: clamp(1.02rem, 1.6vw, 1.2rem); color: var(--ink-2); max-width: 46ch; }
+  .dek b { color: var(--ink); font-weight: 600; }
+
+  .kicker { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); font-weight: 600; margin: 0 0 1.1rem; }
+  h2 { font-family: var(--display); font-weight: 800; text-transform: uppercase; letter-spacing: -0.02em; line-height: 1; font-size: clamp(1.4rem, 3.4vw, 1.9rem); margin: 0 0 1.1rem; }
+  h3 { font-family: var(--display); font-weight: 700; text-transform: uppercase; letter-spacing: -0.01em; font-size: 1rem; margin: 1.6rem 0 0.6rem; }
+  p { margin: 0 0 1.05rem; font-size: 1.02rem; line-height: 1.6; color: var(--ink-2); max-width: 46rem; }
+  p b, p strong, li b, li strong { color: var(--ink); font-weight: 600; }
+  ul, ol { margin: 0 0 1.05rem; padding-left: 1.3rem; max-width: 46rem; }
+  li { font-size: 1.02rem; line-height: 1.6; color: var(--ink-2); margin-bottom: 0.4rem; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.88em; background: var(--paper-2); padding: 0.08em 0.35em; border-radius: 3px; color: var(--ink); }
+
+  .divtable { margin: 1.5rem 0 0.75rem; max-width: 46rem; }
+  .divtable-head { display: flex; justify-content: space-between; align-items: baseline; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); padding-bottom: 0.6rem; border-bottom: 1px solid var(--rule); }
+  .divtable-head .k { color: var(--ink); font-weight: 600; }
+  .drow { display: grid; grid-template-columns: 7.5rem 1fr 4rem; align-items: center; gap: clamp(0.6rem, 2vw, 1.2rem); padding: 0.85rem 0; border-bottom: 1px solid var(--rule); }
+  .drow .yr { font-family: var(--display); font-weight: 700; font-size: 1.2rem; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  .drow .mt { display: block; font-size: 0.66rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-2); margin-top: 0.15rem; }
+  .track { position: relative; height: 1.3rem; background: var(--paper-2); }
+  .track .axis { position: absolute; left: 50%; top: -0.3rem; bottom: -0.3rem; width: 1px; background: var(--rule-strong); }
+  .bar { position: absolute; top: 0; bottom: 0; transform: scaleX(var(--w)); }
+  .bar.pos { left: 50%; width: 50%; transform-origin: left center; background: var(--accent); }
+  .bar.neg { right: 50%; width: 50%; transform-origin: right center; background: var(--neg); }
+  .drow .fig { text-align: right; font-size: 1.05rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+  .fig.pos { color: var(--accent-ink); }
+  .fig.neg { color: var(--neg); }
+  .fifa-note { font-size: 0.85rem; color: var(--ink-2); margin-top: 0.5rem; }
+
+  .checks { display: grid; gap: 1.4rem; margin-top: 1.25rem; max-width: 46rem; }
+  .check { border-top: 1px solid var(--rule); padding-top: 1rem; }
+  .check .n { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-2); }
+  .check h4 { margin: 0.4rem 0 0.45rem; font-size: 1.02rem; font-weight: 650; letter-spacing: -0.01em; font-family: var(--body); text-transform: none; color: var(--ink); }
+  .check p { margin: 0; font-size: 0.95rem; }
+
+  footer { padding: clamp(2rem, 5vw, 3rem) 0 clamp(3rem, 6vw, 4rem); }
+  .frow { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; font-size: 0.85rem; color: var(--ink-2); border-top: 1px solid var(--rule-strong); padding-top: 1rem; margin-bottom: 0.9rem; }
+  .frow a { color: var(--accent-ink); text-decoration: none; }
+  .disc { font-size: 0.8rem; color: var(--ink-2); max-width: 46rem; }
+  .disc a { color: var(--accent-ink); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="back" href="/">&larr; statcat</a>
+    <a href="index.html">the article &rarr;</a>
+  </div>
+</div>
+
+<main>
+  <section>
+    <div class="wrap">
+      <div class="meta">
+        <span class="rec">Field Notes &middot; No. 01</span>
+        <span class="src">From GOAT to Scapegoat &middot; behind the numbers</span>
+      </div>
+      <h1 class="wordmark">Measuring the internet&rsquo;s turn on Argentina</h1>
+      <p class="dek">How the sentiment numbers behind <b>From GOAT to Scapegoat</b> were actually collected and scored &mdash; where the data came from, which model did the scoring, and what I checked before trusting the result enough to publish it.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="kicker">Background</p>
+      <p>I started watching soccer around 2008, during the Messi/Ronaldo era at Barcelona and Real Madrid. Messi wasn&rsquo;t &ldquo;the GOAT&rdquo; yet, that conversation was still open. I stopped following the sport closely after college, so by the time this year&rsquo;s World Cup happened I was mostly watching from the outside.</p>
+      <p>What got my attention wasn&rsquo;t the games, it was the comments. People calling Argentina FIFA&rsquo;s favorite team, accusing refs of favoring them, calling the players obnoxious. This is the same team that won in 2022 to near universal praise. So I wanted to actually check: did the public&rsquo;s opinion of Argentina change, or did Argentina change?</p>
+      <p>In this post I&rsquo;m going to look at:</p>
+      <ul>
+        <li>Did sentiment toward Argentina actually fall between the 2022 and 2026 finals, or is that just a feeling from a loud subset of comments?</li>
+        <li>If it fell, is that just because they lost this time (losers get talked about worse than winners, that&rsquo;s not news), or is something else going on?</li>
+        <li>Does the pattern hold across more than one audience, or is it specific to one comment section?</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="kicker">Experimental setup</p>
+
+      <h3>Data collection</h3>
+      <p>My first plan was Reddit match threads, since they&rsquo;re timestamped during the match. That fell through because Reddit closed self-service Data API access under its Responsible Builder Policy, which covers Reddit data however it&rsquo;s obtained, including scraped mirrors. So I moved to YouTube comments under the official highlights of each final, pulled through the <b>YouTube Data API v3</b>.</p>
+      <p>I used two channels per final, FOX and FIFA, so the result would have to hold up across two separate audiences rather than one &mdash; that&rsquo;s 4 videos total (2 finals &times; 2 channels). I collected <b>45,016 comments</b> and kept <b>28,051</b> for scoring, for two reasons:</p>
+      <ol>
+        <li>I only kept top-level comments. The API caps inline replies at 5 per thread, so replies came back only about 40% complete, and mixing a fully-captured sample with a partially-captured one would bias the comparison.</li>
+        <li>I restricted to the first 42 days after each video posted. 2022&rsquo;s videos have years of accumulated comments and 2026&rsquo;s have weeks, so comparing raw totals would be unfair &mdash; 42 days made the two finals comparable over equal elapsed time.</li>
+      </ol>
+
+      <h3>Model selection</h3>
+      <p>For sentiment scoring I used <code>cardiffnlp/twitter-xlm-roberta-base-sentiment</code>, a multilingual model. I picked multilingual specifically because a large share of the comments are in Spanish, and most off-the-shelf sentiment models are English-only. An English-only model scores non-English text as roughly neutral by default, which would have quietly dropped a big chunk of Argentina&rsquo;s own fans out of the data and made the sentiment drop look bigger than it actually is.</p>
+      <p>For attributing a comment to a team (is this comment about Argentina or about the opponent), I used keyword matching on team and player names rather than a model, since I wanted that step to be checkable. The keyword lists are published alongside the data in <code>data/public/aggregates.json</code>.</p>
+
+      <h3>Pipeline</h3>
+      <p>The pipeline is two scripts. <code>scrape_youtube.py</code> pulls comments via the API and writes raw data locally (not committed, since it&rsquo;s full of usernames and comment text from people who never agreed to be published). <code>analyze.py</code> filters to top-level comments within the 42-day window, runs sentiment scoring, attributes each comment by keyword, and aggregates into the public numbers (counts, means, keyword lists &mdash; no usernames or raw text).</p>
+
+      <h3>Checking the result</h3>
+      <p>Before trusting the headline number I ran two checks against it:</p>
+      <div class="checks">
+        <div class="check">
+          <span class="n">Check 01</span>
+          <h4>Is this just &ldquo;losers get hated on&rdquo;?</h4>
+          <p>Argentina won in 2022 and lost in 2026, so some drop is expected from the result alone. To isolate that, I needed a team that also lost a final, as a control. France lost the 2022 final and stayed net positive the whole time (+0.14 on FOX, +0.21 on FIFA). So losing a final doesn&rsquo;t do this to a team by default &mdash; something about Argentina specifically is different.</p>
+        </div>
+        <div class="check">
+          <span class="n">Check 02</span>
+          <h4>Is the model picking up anger aimed at the opponent instead?</h4>
+          <p>A comment like &ldquo;Spain only won because the ref cheated&rdquo; is hostile in tone but pro-Argentina, and it names Argentina, so it counts toward Argentina&rsquo;s score. I checked what happens when comments naming both teams are excluded. The gap holds.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="kicker">Findings</p>
+      <p>Mean sentiment toward Argentina, scored &minus;1 to +1, in the 42 days after each final &mdash; FOX audience:</p>
+
+      <div class="divtable" aria-label="Net sentiment toward Argentina, FOX audience">
+        <div class="divtable-head">
+          <span class="k">Net sentiment toward Argentina &middot; FOX</span>
+          <span class="scale-note">&minus;1.0 &larr; 0 &rarr; +1.0</span>
+        </div>
+        <div class="drow">
+          <div><span class="yr">2022</span><span class="mt">Final &middot; won</span></div>
+          <div class="track"><span class="axis" aria-hidden="true"></span><span class="bar pos" style="--w: 0.35;"></span></div>
+          <div class="fig pos">+0.35</div>
+        </div>
+        <div class="drow">
+          <div><span class="yr">2026</span><span class="mt">Final &middot; lost</span></div>
+          <div class="track"><span class="axis" aria-hidden="true"></span><span class="bar neg" style="--w: 0.28;"></span></div>
+          <div class="fig neg">&minus;0.28</div>
+        </div>
+      </div>
+      <p class="fifa-note">The same flip appears in FIFA&rsquo;s audience: +0.42 in 2022 to &minus;0.17 in 2026. Negative comments about Argentina went from roughly 1-in-5 to over half.</p>
+
+      <p>France, the control, lost their 2022 final and still finished net positive. Argentina lost their 2026 final and went net negative &mdash; further than the loss alone explains &mdash; and that gap shows up independently in both audiences.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="kicker">Limits</p>
+      <ul>
+        <li>Sarcasm still breaks sentiment models, and this one is no exception. I couldn&rsquo;t correct for it, only flag it.</li>
+        <li>France isn&rsquo;t a perfect control &mdash; Spain&rsquo;s fanbase isn&rsquo;t France&rsquo;s fanbase.</li>
+        <li>Conduct- and tactics-specific subtopics rest on small samples (n = 48&ndash;99) and are labelled as such.</li>
+        <li>The YouTube API consistently returned about 75% of each video&rsquo;s reported comment count, across all four videos, so this measures the discourse about Argentina that was retrievable, not a full census.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="kicker">A note on tools</p>
+      <p>This was a weekend project. I used Claude Code as a pair programmer to build both scripts above (the scraper and the analysis/scoring pipeline) and to work through the two robustness checks before I trusted the result enough to publish it. The framing, the research questions, and the conclusions are mine.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="frow">
+        <span><b>Field Notes</b> &middot; <a href="/">statcat &rarr;</a></span>
+        <span>Full writeup &middot; <a href="index.html">From GOAT to Scapegoat &rarr;</a></span>
+      </div>
+      <p class="disc">Every figure above is computed from 28,051 scored comments collected through the YouTube Data API. Sentiment is a multilingual model&rsquo;s P(positive)&minus;P(negative); teams are matched by published keyword lists in <a href="data/public/aggregates.json">aggregates.json</a>.</p>
+    </div>
+  </footer>
+</main>
+
+</body>
+</html>
